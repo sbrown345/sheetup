@@ -32,12 +32,12 @@
 		
 		
 		<h2>What's next?</h2>
-	<p>At the moment sheetUp sometimes still returns a diferent output to what the user may have initially
-	 entered because each browser stores their stylesheets diferently internally. For instance h1, h2{} may 
-	 be stored as h1{} h2{} in Safari.
-	The next version will optionally have a middle layer that stores a software version of the stylesheet 
-	interface with. This will perform worse but will enable it to be useful in other areas, for example in a floating
-	css editor.
+	<p>Will fix the variation in browsers with a middle layer that  simulates the stylesheets as text. The problem at the moment is that the 
+	browser reformats the rule cssText. For instance, "h1, h2 {}" can become two rules in some browsers and "green" may 
+	become "#008000". It will come with a performance penalty but it will make output consistent, it should be able to be turned off too.
+	
+	
+	
 	</p>
 	<p>New site with a new test suite and a proper tutorial and examples.</p>
 	</div>
@@ -94,6 +94,20 @@
 
 </div>
 
+<div class="rightbox">
+  <div id="whats">
+	<h2>Bookmarklet</h2>
+	<p>Use in combination with Firebug, right-click the link below and Bookmark</p>
+    <p><a href="javascript:var%20scr=document.createElement('script');scr.setAttribute('src','http://www.sheetup.com/js/sheetup.js');document.body.appendChild(scr);void(0);" title="Add sheetUp Bookmarklet">sheetUp Bookmarklet</a></p>
+          
+	
+	
+	
+<div class="clear"></div>  
+</div>
+
+</div>
+
   <div id="lets">
     <h2>Let's try it out &ndash; click the code</h2>
     <div class="idea ideatop">
@@ -127,16 +141,6 @@
 
 </div>
 
-</div>
-
-
-
-
-<div id="bookmarklet">
-	<h2>Bookmarklet</h2>
-	<p>Use in combination with Firebug, right-click the link below and Bookmark</p>
-    <p><a href="javascript:var%20scr=document.createElement('script');scr.setAttribute('src','http://www.sheetup.com/js/sheetup.js');document.body.appendChild(scr);void(0);" title="Add sheetUp Bookmarklet">sheetUp Bookmarklet</a></p>
-          
 </div>
 
 
