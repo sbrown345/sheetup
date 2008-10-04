@@ -1,5 +1,6 @@
 ﻿<?php 
     $title = "Test";
+	$id = "test";
     @include_once "inc/header.php"; 
     
     $head = "";

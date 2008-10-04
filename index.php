@@ -1,5 +1,6 @@
 ﻿<?php 
     $title = "DOM Stylesheet Library";
+	$id = "home";
     @include_once "inc/header.php"; 
 ?>
 
@@ -28,6 +29,17 @@
 			<li>@import rule support</li>
 			<li>Tested with with IE 5.5+, Firefox 3, Opera 9.6, Safari 2.1, Chrome.</li>
 		</ul>
+		
+		
+		<h2>What's next?</h2>
+	<p>At the moment sheetUp sometimes still returns a diferent output to what the user may have initially
+	 entered because each browser stores their stylesheets diferently internally. For instance h1, h2{} may 
+	 be stored as h1{} h2{} in Safari.
+	The next version will optionally have a middle layer that stores a software version of the stylesheet 
+	interface with. This will perform worse but will enable it to be useful in other areas, for example in a floating
+	css editor.
+	</p>
+	<p>New site with a new test suite and a proper tutorial and examples.</p>
 	</div>
 </div>
 
@@ -49,7 +61,7 @@
 
       </li>
       <li>
-        <a href="http://sheetup.googlecode.com/svn/trunk/">
+        <a href="http://sheetup.googlecode.com/svn/trunk/js/">
           SVN Trunk
         </a>
 
@@ -61,6 +73,7 @@
 <div class="rightbox">
   <div id="whats">
     <h2>What's on this site</h2>
+	<p>So much needs doing, like a redesign, but here's the main stuff for now:</p>
 	<dl>
 		<dd><a href="tutorial.php">Tutorial</a></dd>
 		<dt>Have a quick spin with the library.</dt>
@@ -73,6 +86,9 @@
 		<!--<dd><a href="cheatsheet.php">Cheatsheet</a></dd>
 		<dt>An interactive resource on using sheetUp </dt>-->
 	</dl>
+	
+	
+	
 <div class="clear"></div>  
 </div>
 

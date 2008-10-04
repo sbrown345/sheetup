@@ -1,5 +1,6 @@
 ﻿<?php 
     $title = "Examples";
+	$id = "eg";
     @include_once "inc/header.php"; 
 ?>
            

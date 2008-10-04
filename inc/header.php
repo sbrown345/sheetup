@@ -18,11 +18,19 @@
 
 </head> 
 
-<body>
+<body id="<?php echo $id ?>">
     <div id="container">
         <div id="header">
             <div id="menu">
-                <a href="index.php" title="Home">Home</a>|<a href="http://code.google.com/p/sheetup" title="sheetUp at Google Code">Google Code</a>|<a href="http://code.google.com/p/sheetUp/w/list" title="Docs">Docs</a>|<a href="tutorial.php" title="Tutorial">Tutorial</a>|<a href="test.php" title="Test Cases">Test Cases</a>|<a href="benchmark.php" title="Intensive Test">Benchmark</a>|<a href="examples.php" title="Intensive Test">Examples</a>|<!--<a href="bookmarklet.php" title="Bookmarklet/Favele">Bookmarklet/Favelet</a>|<a href="cheatsheet.php" title="Bookmarklet/Favele">Cheatsheet</a>|--><a href="plugins.php" title="Plugins">Plugins</a>
+                <a class="home" href="index.php" title="Home">Home</a> |
+				<a class="code" href="http://code.google.com/p/sheetup" title="sheetUp at Google Code">Google Code</a> |
+				<a class="docs" href="http://code.google.com/p/sheetUp/w/list" title="Docs">Docs</a> |
+				<a class="tut" href="tutorial.php" title="Tutorial">Tutorial</a> |
+				<a class="test" href="test.php" title="Test Cases">Test Cases</a> |
+				<a class="bench" href="benchmark.php" title="Intensive Test">Benchmark</a> |
+				<a class="eg" href="examples.php" title="Intensive Test">Examples</a> |
+				<!--<a class="cheat" href="cheatsheet.php" title="Bookmarklet/Favele">Cheatsheet</a> |-->
+				<a class="plugs" href="plugins.php" title="Plugins">Plugins</a>
             </div>
         </div>
         

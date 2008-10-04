@@ -1,5 +1,6 @@
 ﻿<?php 
     $title = "HoverEd";
+	$id = "eg";
     @include_once "inc/header.php"; 
 ?>
            
@@ -135,11 +136,11 @@ function refresh() {
 	
 </script>
 
-<p>This example shows how to use sheetUp to build a simple style editing window. 
-It simply iterates through the rules to create a list of them.
-Fun Use your browser's "View Source" button.</p>
+<p>This example shows sheetUp being used to build a simple style editing window. 
+It simply iterates through the rules to create a list of them. (Use mouse wheel to scroll - will fix later.)
+Use your browser's "View Source" option to view how it's made.</p>
 
-<div id="handle" onmousedown="beginDrag(this, event);"  style="top:100px;left:100px;">
+<div id="handle" onmousedown="beginDrag(this, event);"  style="top:140px;left:120px;">
     <div id="hover">
         <div>
             New rule<br />

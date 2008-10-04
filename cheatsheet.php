@@ -1,5 +1,6 @@
 ﻿<?php 
     $title = "sheetUp Stylesheet Playground/Cheatsheet";
+	$id = "cheat";
     @include_once "inc/header.php"; 
 ?>
     <script src="js/sheetup.js" type="text/javascript"></script>
