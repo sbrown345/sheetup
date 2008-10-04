@@ -1,5 +1,6 @@
 ﻿<?php 
     $title = "Plugins";
+	$id = "plugs";
     @include_once "inc/header.php"; 
 ?>
 

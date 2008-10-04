@@ -1,5 +1,6 @@
 ﻿<?php 
     $title = "Benchmark";
+	$id = "bench";
     @include_once "inc/header.php"; 
 ?>
 

@@ -1,5 +1,6 @@
 ﻿<?php 
     $title = "jQuery pseudo-class animation smoothing for block elements";
+	$id = "eg";
     @include_once "inc/header.php"; 
 ?>
 <script type="text/javascript" src="js/jquery-1.2.6.js"></script>     
