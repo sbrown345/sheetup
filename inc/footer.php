@@ -1,7 +1,7 @@
 
 		
     </div>
-	<div id="footer">sheetUp - previously DynSS</div>
+	<div id="footer">sheetUp</div>
     <!-- ga code -->
     <script type="text/javascript">
 	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

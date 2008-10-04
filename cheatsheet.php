@@ -11,11 +11,6 @@
 		
 		
 		
-		
-		
-		
-		
-		
         <ul id="tabmenu"></ul>
         <div id="tabwrapper">
             <div class="tab">
@@ -36,14 +31,7 @@
             </div>        
         </div>
         
-        
-        
-        
-        
-        
-        
-        
-        
+               
         
         
         <textarea id="code" cols="70" rows="4"></textarea>
@@ -54,15 +42,11 @@
 
 
 <script type="text/javascript">
-//need to do some proper docs- printable etc
-
-
-
 
 function reset() {
-    ss.fn.removeSS(0);  //need to remove all of them....
-
-     ss('js/styles.css');	
+	ss.fn.removeSS(0);  //need to remove all of them....
+	
+	ss('js/styles.css');	
 }
 
 
