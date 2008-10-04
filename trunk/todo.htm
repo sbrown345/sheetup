@@ -238,12 +238,12 @@ var testCode = function() {
     //As a var
     //.........
     
-    var DynSS = ss();  
-    DynSS.add(".newclass{color:red;}").log().find(".removeclass").log().remove();   //bugged (should b fixed) - this index 20, 21, ??, 23
+    var sheetUp = ss();  
+    sheetUp.add(".newclass{color:red;}").log().find(".removeclass").log().remove();   //bugged (should b fixed) - this index 20, 21, ??, 23
    
-    log("Number of selected rules: " + DynSS.length + 
-        " Version: " + DynSS.version + 
-        " Number of selected stylesheets: " + DynSS.sheets.length);
+    log("Number of selected rules: " + sheetUp.length + 
+        " Version: " + sheetUp.version + 
+        " Number of selected stylesheets: " + sheetUp.sheets.length);
     
   
 
@@ -444,7 +444,7 @@ need to store the selection somewhere cos this wont' select all the correct ones
 
 implement  setArray from jquery to speed it up?
 
-var DynSS = ss(".newRule{color:red}", false);  --- do not actually append it to the stylesheet? store it as 
+var sheetUp = ss(".newRule{color:red}", false);  --- do not actually append it to the stylesheet? store it as 
 a rule...like in jquery - maybe completely unuseful though
 
 
