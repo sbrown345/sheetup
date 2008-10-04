@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="sheetUp" default="runEcho" basedir=".">
+    <target name="runEcho">
+        <!-- Simply echo's a message to the screen -->
+        <echo message="Is anybody out there"/>
+    </target>
+</project>

@@ -1,0 +1,148 @@
+*{margin:0;padding:0;}
+/*Main styles (tut)       -perhaps have an option to ignore a stylesheet on a page e.g. this one*/
+body{font-family:Verdana;font-size:90%;text-align:center;}   
+#container{width:960px;margin:0 auto;position:relative;text-align:left;}
+h1{font-weight:normal;margin:12px 0;} 
+h2{font-weight:normal;margin:10px 0 10px 0;font-size:1.4em;padding-left:5px;border-left:4px solid #777;border-bottom:1px solid #777} 
+h3{font-weight:normal;margin:0px 5px 5px;font-size:1.1em} 
+
+/*the other color*/
+.col{color:#E2DFFF;}
+.bcol{background-color:#E2DFFF;}
+
+#menu{text-align:center;border-bottom:1px solid #666;line-height:40px;}
+#menu a{padding:7px;}
+#menu a:hover{background:#eee;}
+
+a{color:#666666;text-decoration:none;}
+a:hover{color:#aaa;}
+p {margin:10px;}
+#tutorial p, #tutorial pre{margin:15px 5px;}
+pre a {text-decoration:underline;}
+ul{list-style-position:inside;padding-left:20px;list-style-type:circle;}
+
+a.link{display:block;padding-bottom:12px;}
+
+#tutorialcontainer{height:400px;background:#eeeeee;overflow:hidden;}
+.slide{height:400px;overflow:hidden;padding: 0 10px;}
+.slide li{list-style:none;}
+#nav{text-align:center;padding:5px;}
+#current{padding:0 20px;}
+
+#tutorial textarea{width:100%;height:80px;color:#666;border:0;background:#eee}
+#tutorial input{display:block;float:right;margin-top:5px;border:0;padding:4px;background:#ddd;}
+#tutorial input:active{position:relative;top:2px;left:2px;}
+#tutorial input:hover{font-style:italic;}
+
+code{cursor:pointer;color:#888 ;padding-left:5px;}
+code:hover{color:#666;}
+.hi {background:#E2DFFF;display:block;}
+
+#slidewrapper{margin-top:0px;}
+
+#index ol {list-style-type:decimal;}
+#index li {padding-left:5px;}
+
+
+
+
+/*Tutorial Styles*/
+.red{background:red;} .blue{background:blue} .green{background:green;} .purple{background:purple;}
+.box{width:100px;height:100px;text-align:center;line-height:100px;}
+.left{float:left;}
+.clear{clear:both;}
+
+
+.mryellow{background:#DEDF61;color:#000}
+.mryellow .coat{height:60px;width:100px;background:yellow}
+.mryellow .card{background:#eee;color:Green;width:40px;height:40px;}
+
+.class #id .classtofind{color:Red;}
+
+
+#newssfile,
+#newss{display:none;}
+
+
+
+.extend1{height:10px;}
+.extend2{height:10px;}
+.extend3{height:14px;}
+.extend4{height:20px;}
+
+
+.text{}
+
+.variable{padding:2px;}
+
+
+
+
+
+
+/*Tabs*/
+.tab-selected{background:gray;}
+
+
+
+
+
+
+
+/*hoverEd*/
+
+#handle {padding-top:20px;background:#666;width:400px;cursor:move;position:absolute;top:120px;left:120px;}
+#hover {background:#eee;font-size:0.7em;height:400px;overflow:scroll;cursor:default;}
+#hover input, #hover textarea{font-size:1em;border:none;background:#e4e4e4;min-width:10px;cursor:pointer;}
+#hover input:hover{background:#eee}
+#hover input:focus{background:#E7EFA4}
+#hover .proper{}
+#hover .del {color:Red;font-size:0.9em;padding-left:12px;}
+#hover .del:hover {font-weight:bold;}
+#hover .selectorText:hover {background:red; cursor:pointer;}
+#hover .rule {margin-bottom:6px;}
+#hover .add {display:block;padding-left:12px;}
+
+
+
+
+
+
+/*Homepage*/
+.leftbox{float:left;width:50%;}
+.rightbox{float:right;width:50%;}
+
+#lets{clear:both;padding-top:20px;}
+#download, #features, #whats{background:#eee;}
+#download, #whats{margin-left:10px;margin-bottom:20px;}
+#features {margin-right:10px;}
+
+
+
+.idea{padding-top:20px;}
+.ideatop{padding-top:0px;}
+.button{color:Green;}
+
+
+#home code{background:#eee;display:block;padding:4px;margin-bottom:15px;}
+
+
+
+#whats dt, dl, dd {}
+#whats dd a{padding:4px;}
+#whats dd {float:left;clear:left;background:#ddd;width:auto !important; width:100px;min-width:100px;height:30px;}
+#whats dt {float:left;width:300px;height:30px;}
+
+
+#footer{text-align:center;font-size:0.8em;color:#ccc;clear:both;padding-top:100px;}
+
+
+
+@media print{
+  #tutorialcontainer #slidewrapper {height:auto !important; overflow:visible;margin:0 !important;}
+  #tutorialcontainer  {height:auto !important;}
+  #header, #nav, #exec{display:none !important;}
+  
+  #container #slidewrapper{margin-top:0 !important;}
+
+}

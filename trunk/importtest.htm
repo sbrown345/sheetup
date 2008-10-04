@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!--Ext. ss
+<style>
+@import "css/ext.css";
+</style>
+
+
+<link href="css/ext.css" rel="stylesheet" type="text/css" />-->
+
+<script src="js/sheetup.js" type="text/javascript"></script>
+
+
+    
+
+
+
+<script type='text/javascript' src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>
+<!--
+-->
+
+
+
+
+
+</head>
+<body>
+
+<div class="importedRules">.importedRules</div>
+<div class="importedRules2">.importedRules2</div>
+<div class="importedRules3">.importedRules3</div>
+<div class="extRuleWithCapitals">.extRuleWithCapitals</div>
+<div class="extRuleWithCapitals2">.extRuleWithCapitals2</div>
+
+<script type="text/javascript">
+
+ss("css/ext.css").log().remove().log();
+
+//perhaps get around it by internall going
+//if its gona mess up:
+//return _self("css/ext.css", do_not_add).timeout().init(last_sheet);
+
+
+//setTimeout( function(){ss("css/ext.css")}, 1); //no bug - how can i make it return like normal
+//ss(document.styleSheets[document.styleSheets.length-1]) //bug
+
+
+//ss("js/ext.css");
+
+
+//http://www.webdeveloper.com/forum/archive/index.php/t-82194.html
+
+
+    //ss().log();
+    /*log("-------");
+    alert(ss().log().length)
+    alert(ss().remove().log().length);*/
+</script>
+
+</body>
+</html>

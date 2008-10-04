@@ -1,0 +1,593 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>sheetUp Stylesheet Library Test</title>   
+
+
+
+ 
+<!--1st ss-->
+<style type="text/css" title="aTitle">
+    
+* {margin:0;padding:0;}    /
+    
+    
+    
+    
+/*A comment*/   
+.wasbgred   {background:red;height:3px;}
+div{}
+div span{}
+div span a  {text-decoration:none;}
+.regexp     {color:pink;height:20px;}
+.toremove   {font-weight:bold;font-size:110%;}
+.moving     {position:absolute;top:0px;left:500px;background:blue;color:white;}
+.transparent{background:Black;color:white;}
+#computed   {color:#666666;}
+body   .text{color: orange;}
+.ruleobject{}
+#lots{}
+.test1{} .test2{}
+
+
+.copyfrom   {text-indent:10px;color:#777;}
+.renamefrom {text-indent:30px;color:red;}
+
+.copyStylesFrom{border:solid 1px red; border-left-width:5px;color:yellow;background:black;}
+.copyStylesTo{}
+
+#code{font-size:80%;}
+body #code{color:#666666;}
+#testDiv{}
+
+/*A comment 2*/   
+</style>
+
+<!--2nd ss-->
+<style type="text/css"> 
+/* 2nd sheet */
+.wasgreen{color:green;}     
+</style>
+
+<!--3rd to remove-->
+<style type="text/css" title="sheetTitle"> 
+.removesheet{color:Purple;}
+</style>
+
+
+
+
+<!--Ext. ss
+<link href="css/ext.css" rel="stylesheet" type="text/css" />
+-->
+
+
+<script src="js/sheetup.js" type="text/javascript"></script>
+<!--   <script src="ss.min.js" type="text/javascript"></script>-->
+<!-- http://fmarcia.info/jsmin/test.html -->
+    
+<!--
+<script type='text/javascript' src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>
+-->
+
+<script type="text/javascript">
+
+        
+function log(m, m2) {
+    if(libDEBUG) {			
+        try {			   	        
+            if(arguments.length > 1) console.log(m, m2);	 
+            else console.log(m); 
+        }catch(e){}
+    }
+}
+
+
+var testCode = function() {
+
+
+
+    
+    //Core 
+    //......
+
+    ss().log();                        //no args        
+    ss(/.regexp/).log();                  //search regexp                                                          
+    ss(".test1").log();                  //search string
+    ss("--div span a").log()                  //automake regexp   //(CHECK div a selects like div span a)
+    //ss("||div|span|a").log();               //automake regexp  OR
+
+
+
+    ss("body{font-size:90%;}").log();    //new rule
+    ss(document.styleSheets[0]).log();   //single stylesheet obj
+    ss(document.styleSheets[0].rules || document.styleSheets[0].cssRules).log();  //single rules obj
+    ss(document.getElementById("testDiv")).log();//dom element      - needs doing
+    ss(ss());                     //itself    
+    ss(document.getElementById("testDiv")).log();
+    log(ss(document.getElementById("testDiv")).color);
+
+    //Chain 
+    //......
+    var chain = ss("div").log(); 
+    log(chain);              //4 rules
+    chain = chain.find("span").log(); //2 rules
+    log(chain); 
+    chain.end().log();        //back to 4 rules
+ 
+   
+    log(ss("div").find("span"));
+    log(ss("div").find("span").end());  
+    log(ss("test").find("test2").end().end().end().end().end().end()); 
+    log(ss("div").find("span").find("a").end().end() );
+    log(ss("div").find("span").find("a").end().end().end() );
+    
+
+  
+    //Modify 
+    //.......
+    
+    var s = new ss;
+    log(s);
+
+    log(ss()); // all style returned 
+    log(ss().add(".green2{color:green;text-indent:7px;}", false)); //all styles excluding new rule
+    log(ss().add(".green{color:green;text-indent:7px;}")); //all rules including new rule
+    
+    
+    
+    ss(".copyfrom").copy("#copyto");
+    ss(".renamefrom").copy(".renameto");
+    
+    
+    
+    log(ss(".green").property("background-color", "#eee"));
+    log(ss(".green").property({'font-weight': 'bold', 'float': 'right'}));
+    log(ss(".toremove").remove());    
+    log(ss(".regexp").property("color"));
+    log(ss(".regexp").property("height"));
+    
+
+    
+    log(ss("moving").text());
+    log(ss("moving").getRulesAsArray());
+    log(ss().getAffectingRules(document.getElementById("lots")));
+    log(ss("div").text());
+    log(ss().text(true));
+  
+    log(ss(".text").text("color:yellow; background:black;"));
+    
+    log(ss("copyStylesFrom").copyStyles(".copyStylesTo"));  //we have problems copying border-width etc cos it isnt' camel case
+    log(ss(".copyStylesFrom").copyStyles(["border"], ".copyStylesTo"));  //not working
+    
+   
+ 
+   
+    log(ss().getComputedStyle(document.getElementById("testDiv")).color);
+    
+    
+
+    
+    
+    //Selectors 
+    //..........
+    log(ss().slice(0));
+    log(ss(/.regexp/).remove());
+    
+  
+    //Stylesheet objects
+    //...................
+    
+    //ss("js/ext.css").log();
+    /*ss().newSS(".newss1{color:red;background:#ddd;}").log();     //so doees this work fine???
+    
+    ss().newSS(".newss1{color:red;background:#ddd;}   .newss2  {font-style:italic}").log();
+    ss().enableSS(0);  
+    ss().disableSS(0); 
+  
+    ss().newSS(".newss1{color:red;background:#ddd;}", "Test title").sheets[0];//title 
+   
+     
+    //START OF TROUBLE!! A parameter or an operation is not supported by the underlying object" code: "15
+    //http://www.webdeveloper.com/forum/archive/index.php/t-82194.html ?
+    /*log(ss().newSS("css/newss.css"));
+    log(ss("css/newss.css"));
+
+    log( ss().removeSS("sheetTitle") );
+    log( ss().removeSS(2) );
+      
+
+    //Not really tested
+    log(ss().toggleSS(0).log();  
+    log(ss().deleteMedium("screen").log();
+    //END OF TROUBLE!!!*/
+
+    ss().medium();    
+    ss().appendMedium("screen").log();
+    ss().medium("handheld").log();
+    ss().medium("print").log();
+    log(ss().medium());
+    log(ss().medium()[0]);
+    
+
+    //Testing
+    //........
+    //ss(".moving").animate("left", 1, 1000).animate("top", 1, 1500);     //!! fix
+    
+    //Opacity
+    //........
+    ss(".transparent").property({"opacity": "0.1", "display":"block", "width": "100px"}).log(); //needs a height
+  
+    
+    //Extend
+    //.......
+    ss.fn.test = function(msg) { log(msg); return this; };
+    ss().test("hi").find("moving");
+    
+      
+    ss.fn.displaySelectorText = function() {
+        return this.each(function() {    //use the internal each function to 
+            log(this.selectorText);
+        });   
+    }; 
+    ss("div").displaySelectorText();
+    
+
+   
+    //As a var
+    //.........
+    
+    var DynSS = ss();  
+    DynSS.add(".newclass{color:red;}").log().find(".removeclass").log().remove();   //bugged (should b fixed) - this index 20, 21, ??, 23
+   
+    log("Number of selected rules: " + DynSS.length + 
+        " Version: " + DynSS.version + 
+        " Number of selected stylesheets: " + DynSS.sheets.length);
+    
+  
+
+    //ss(".addAndRemoveTest{color:green;}").remove().log();  //works   
+    //ss().add(".addAndRemoveTest{color:green;}").remove().log(); //removes everything - slow
+  
+  
+  
+    //CURERNT ISSUES
+    ss().remove().log(); //nto removing the one from ext ss - .regexp
+    //nor importedRules3 from css/import3cross.css
+    
+    
+    
+    
+    
+    
+    
+
+
+  
+
+    //Each
+    //.....
+    ss(".ruleobject").each(function(i, rule) {
+        log(this);
+        ss(this).property("color", "green");
+        ss(this).property("text-decoration", "underline");
+        
+    });
+    
+    
+
+    //Stylesheet context
+    //...................
+    ss(".regexp", document.styleSheets[0]).log();
+    ss("div", "aTitle").log();
+    
+    
+
+    stop = new Date();
+    //document.getElementById("runtime").innerHTML = " Start ms: " + (start +0)  + " Stop ms: " +  stop + " <b>Total: "+ (stop  - start) +"</b>";
+    document.getElementById("runtime").innerHTML = "<b>Total runtime: "+ (stop  - start) +"</b>";
+    
+    
+    log("Finished");
+    //alert("Finished");
+};
+
+var start, stop;
+window.onload = function() {
+    ss.fn.debug = libDEBUG = false;
+    start = new Date();
+    document.getElementById("code").innerHTML = testCode.toString();//.replace(/;/, ";\n");
+    testCode(); //want to get every line and wrap a log() around it
+};
+</script>
+
+
+
+
+</head> 
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+<div id="runtime"></div>
+<h1>sheetUp Stylesheet Library Test</h1>
+
+
+
+
+
+
+
+<pre id="code"> 
+
+</pre>
+
+<div class="wasgreen">.wasgreen (This is on the 2nd stylesheet, so if its added on its own on the first SS it gets overwritten??) do: ss(".newss2{color:red}");</div> 
+<div class="wasbgred">.wasbgred</div>
+<div id="testDiv">#testDiv</div>
+<div id="computed">#computed</div>
+<div class="green">.green</div>
+<div class="regexp">.regexp</div>
+
+<div class="toremove">.toremove</div>
+
+<div class="newss1">.newss1</div>
+<div class="newss2">.newss2</div>
+<div class="moving">.moving</div>
+<div class="transparent">.transparent (black)</div>
+<div class="importedRules">.importedRules</div>
+<div class="importedRules2">.importedRules2</div>
+<div class="importedRules3">.importedRules3</div>
+<div class="ruleobject">.ruleobject</div>
+
+<div id="copyto">#copyto</div>
+<div class="renameto">.renameto</div>
+
+<div class="removesheet">.removesheet</div>
+
+<div class="copyStylesFrom">.copyStylesFrom</div>
+<div class="copyStylesTo">.copyStylesTo</div>
+
+<div class="newSSUrl">.newSSUrl</div>
+
+<div class="newss1 wasgreen classnotthere" id="lots">getAffectingRules</div>
+
+
+<h2>Todo</h2>
+
+<pre>
+
+<h1>menusmooth.php: If we get an elements computed style, then we can apply the :hover styles over it !!!!!!!!!!!!!!!!!!!!! 
+Should fix any probs and make much easier to use.</h1>
+
+
+
+
+
+
+
+
+!important doesnt seem to overwrite styles
+
+
+
+
+http://aptana.com/reference/html/api/HTMLDOM2.index.html
+
+http://aptana.com/reference/html/api/CSSPrimitiveValue.html - (ie6 doesn't support so no point yet)
+CSSPrimitiveValue
+
+
+Perhaps Useful docs
+http://webkit.org/docs/a00508.html
+
+
+reduce simplyfiy code!!!!!!!
+
+
+bug: ss().newSS("css/ext.css")    or ss("ext.css")
+
+
+perhaps default ss() should select no rules and just the first sheet
+
+
+CRITICAL: just some easy way to select rules, by typing in text without bothering with regexp.
+2) a normal css selector - filter out rules that would affect the same elements as that selector
+
+
+
+
+http://playground.chrisbk.de/moofx/examples.html#exampleF
+
+
+//What would be nice:       - doesn't actually add it to the sheet - just stores a rule obj
+var newRule = ss(".newRuleNotAddedToSSYet{body:font-size:130%;}"); //useful though?
+ss(document.styleSheets[0]).append(newRule); //adds it to the sheet - how in the world would it be useful?
+
+
+
+http://webkit.org/blog/138/css-animation/ check how it works with css animation , test moz css anm too
+
+
+
+
+//EXAMINE http://www.quirksmode.org/dom/changess.html - do some tests!! - possible to discount for them?
+ make a table of what things are supported and what isn't supported - can make a plan of how to support them
+
+
+//fix up increment more nicely,    Add to docs 
+//optimize animation by caching rules (pass rule to property()?)
+//fix animatiion by allowing increment of difentr ttypes
+//allow use of increment jquery plugs
+
+//ss(dom element).getRules() //select rules that act on a dom element  !!! could be very useful
+//look at nodetype, id, class - filter any rulse
+
+
+filter properties (search by property)
+fix opacity
+browser specific properties?
+need to store the selection somewhere cos this wont' select all the correct ones at the mo:
+
+implement  setArray from jquery to speed it up?
+
+var DynSS = ss(".newRule{color:red}", false);  --- do not actually append it to the stylesheet? store it as 
+a rule...like in jquery - maybe completely unuseful though
+
+
+bottom of http://www.howtocreate.co.uk/tutorials/javascript/domstylesheets
+http://www.quirksmode.org/dom/w3c_css.html
+
+
+copying properties between sheets/rules etc
+ss(".rule1").copyStyles(["color", "border"  ], ".rule2"); //copies select properties to .rule2
+ss(".rule1").copyStyles(".rule2"); //copies all proeprties indervidually to rule2
+!!!!!!!! should do it from the cssText not the .styles!!!!!!!!!!!!!!!
+
+
+
+
+
+
+Cascaded rules: 1)look at id/class/type, look at parent and id/class/type and so on - check with rules
+
+
+
+get whole text of stylesheet - with comments etc
+
+ajax add ss? - can return all text neatly then with comments - bit out of scope: leave to other libs
+http://www.hunlock.com/blogs/Howto_Dynamically_Insert_Javascript_And_CSS
+
+
+
+!!!!
+Perhaps it might be quite useful to be able to copy all the styles from the selected rules into a new rule.
+!!
+!
+
+!!!!
+something to add selectionsd togethetr!!!!!!!!!!!!!!!!!!!!!!!!!
+shortcut:
+e..g ("#box | .box | .red");
+
+
+and
+ss("#box").addSelection(".box")
+
+
+dont need much else because selecting rules (probably) isn't as useful as selecting elements in jquery
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+API format for API
+
+
+
+
+
+FILTER
+************************
+
+LONG EXAMPLE:
+ss.fn.make10px30px = function () {
+    return this.each(function() {            
+        if(ss(this).property("height") == "3px") {
+            ss(this).height("30px");
+        }
+    });                    
+};
+
+ss(".wasbgred").make10px30px();
+
+HOW IT SHOULD BE
+----------------
+ss().filter("height").height("20px");           //filter all rules with a height and set to 10px
+ss().filter("height", "10px").height("20px");   //filter all rules with a height of 10px and set to 20px
+
+********************************
+
+
+something more todo with the css text of the stylesheet?
+perhaps have a look at the css thing i wrote last year
+
+
+
+
+
+
+similar libs:
+http://revnode.com/oss/css/ (http://code.google.com/p/cssjs/)
+
+-nice links to the 5 css implementation docs
+http://developer.apple.com/documentation/AppleApplications/Reference/SafariCSSRef/index.html
+http://www.opera.com/docs/specs/css/
+http://www.opera.com/docs/specs/css/
+http://developer.mozilla.org/en/docs/CSS_Reference:Mozilla_Extensions
+http://msdn2.microsoft.com/en-us/library/ms531209.aspx
+
+ideas:
+
+for(var=i;i<10;i++) {
+    ss(".newClass"+i+"{height:"+i*10+"px}")
+}
+
+
+-stick webkit and moz infront of css3 stuff
+-if they are being extracted remove them?
+-extend ss().property? rather than having if then statements..for things like filter or -webkit- ?
+
+
+
+<div class="newClass0"></div>
+<div class="newClass1"></div>
+<div class="newClass2"></div>
+
+
+
+
+td, tr{} is added for 2 seperate ones
+how to compensate for the two seperate ones when manipulating them?????
+
+
+
+
+a build script
+    - can link up to a webpage to generate it
+        (page would allow option of servering as text... perhaps with neat javascript code colouring too.....)
+
+
+
+</pre>
+
+
+</body>
+</html>
