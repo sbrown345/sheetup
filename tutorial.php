@@ -474,7 +474,7 @@ ss(".extend").make10px30px();</code></pre>
                                 
                 <div class="slide"><h2>Stylesheet object functions</h2>
                 
-                 http://code.google.com/p/sheetUp/wiki/StylesheetSwitching
+                 http://code.google.com/p/sheetup/wiki/StylesheetSwitching
                     
                     
                 </div>
