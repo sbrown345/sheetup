@@ -1,0 +1,13 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+A table to try and ensure consistesy.
+
+= Details =
+
+|| *add*         || *remove* || *modify* || *text* || *each* || *get* || *all* || 
+|| __stylesheet__      ||  ✓ ||           ||   ✓          ||   ✓          ||        ||  ||
+|| __selectorText__      ||  ✓ ||           ||   ✓          ||   ✓          ||        ||  ||
+|| __rule__      ||  ✓ ||     ✓      ||   ✓          ||   ✓          ||    ✓    ||  ||
+|| __property__      ||  ✓ ||           ||   ✓          ||   ✓          ||        ||  ||
