@@ -1,0 +1,3 @@
+/*@import "ext.css"; bug check  -  the rules in this sheet do not display in
+ the stylesheet object in IE if it back references to its parent*/
+.importedRules3{color:#000;background:url(bg.gif) no-repeat right;text-indent:10px;}
