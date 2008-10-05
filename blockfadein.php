@@ -1,6 +1,8 @@
 ﻿<?php 
     $title = "jQuery pseudo-class animation smoothing for block elements";
 	$id = "eg";
+	$desc = "Demonstrating usage of the DOM stylesheet library in helping to animate pseudo-classes.";
+	$keywords = "dom pseduo-class, animating psuedo-classes, animating psuedo classes, moo fx";
     @include_once "inc/header.php"; 
 ?>
 <script type="text/javascript" src="js/jquery-1.2.6.js"></script>     
@@ -94,7 +96,7 @@ $.fn.block = function (t) {
         $span.css({position:'absolute',width:'100%',height:'100%',left:0,top:0,cursor:'pointer'});
 
         //rename the hover class for the new span and hide it
-<span class="hi">        ss(this.className+':hover').rename('.'+this.className+' span.hover'); //sheetUp useful here</span>        $span.css({opacity: 0});
+<span class="hi">        ss(this.className+':hover').rename('.'+this.className+' span.hover'); </span>        $span.css({opacity: 0});
 
         //animate
         $this.hover(function() {   

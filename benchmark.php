@@ -1,7 +1,10 @@
 ﻿<?php 
     $title = "Benchmark";
 	$id = "bench";
+	$desc = "Test the performance of the current sheetUp stylesheet library.";
+	$keywords = "library test, library benchmark, stylesheet performance, dom stylesheet performance";
     @include_once "inc/header.php"; 
+	
 ?>
 
 

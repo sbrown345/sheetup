@@ -14,6 +14,12 @@
 <script type="text/javascript" src="js/lib.js"></script>
 
 
+<meta name="y_key" content="ec1a284608e9b9f3" />
+<meta name="verify-v1" content="Jlrl39v1lXuneielgP1XH65ZGbALxwFg8KTbA+rypIg=" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="en-uk" />
+<meta name="Description" content="<?php echo $desc ?>" />
+<meta name="Keywords" content="dynamic css, dynamic stylesheet, stylesheet, dom stylesheet, javascript stylesheet, <?php echo $keywords ?>" />
 
 
 </head> 
@@ -24,7 +30,7 @@
             <div id="menu">
                 <a class="home" href="index.php" title="Home">Home</a> |
 				<a class="code" href="http://code.google.com/p/sheetup" title="sheetUp at Google Code">Google Code</a> |
-				<a class="docs" href="http://code.google.com/p/sheetUp/w/list" title="Docs">Docs</a> |
+				<a class="docs" href="http://code.google.com/p/sheetup/w/list" title="Docs">Docs</a> |
 				<a class="tut" href="tutorial.php" title="Tutorial">Tutorial</a> |
 				<a class="test" href="test.php" title="Test Cases">Test Cases</a> |
 				<a class="bench" href="benchmark.php" title="Intensive Test">Benchmark</a> |

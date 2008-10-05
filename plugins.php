@@ -1,6 +1,8 @@
 ﻿<?php 
     $title = "Plugins";
 	$id = "plugs";
+	$desc = "Extensions/plugins for sheetUp.";
+	$keywords = "javascript extensions, sheetup extensions";
     @include_once "inc/header.php"; 
 ?>
 
