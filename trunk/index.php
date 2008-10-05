@@ -1,6 +1,8 @@
 ﻿<?php 
     $title = "DOM Stylesheet Library";
 	$id = "home";
+	$desc = "sheetUp is a Javascript library that makes manipulating DOM stylesheets easy.";
+	$keywords = "easy dom stylesheets, javascript stylesheets made easy";
     @include_once "inc/header.php"; 
 ?>
 

@@ -1,6 +1,8 @@
 ﻿<?php 
     $title = "Test";
 	$id = "test";
+	$desc = "A test to ensure the basic functionality of sheetUp works.";
+	$keywords = "sheetup testing, sheetup test suite, javascript test suite, javascript testing";
     @include_once "inc/header.php"; 
     
     $head = "";
@@ -99,8 +101,8 @@ window.onload = function() {
 <div id="testcontainer" class="test">
 
 <p>Just a basic test that executes the code in the test column and checks the result 
-against the expected column. It is calibrated for Firefox 3, because browsers handle the rules so differently   
-their output can be different.</p>
+against the expected column. Because browsers handle the rules so differently   
+their output can be different, so this calibrated for Firefox 3.</p>
 <p>Tested in: Firefox 3.0</p>    
 
 <table>
@@ -217,8 +219,8 @@ their output can be different.</p>
     <tr><th>ss(".newrule9").text("color:red"); /red/.test(ss(".newrule9").text());</th> <td class="e">true</td>         <td class="r"></td></tr>
     <tr><th>/blue/.test(ss(".newrule9").text());</th>                                   <td class="e">false</td>         <td class="r"></td></tr>
 
-    <tr><th>ss(".newrule9").property("color", "green").property("color");</th>          <td class="e">"green"||"#008000"</td>        <td class="r"></td></tr>
-    <tr><th>ss(".newrule9").property({"padding": "10px", "font-size": "12px"}).property("padding");</th><td class="e">"10px 10px 10px 10px"||"10px"</td><td class="r"></td></tr>
+    <tr><th>ss(".newrule9").property("color", "green").property("color");</th>          <td class="e">"green"</td>        <td class="r"></td></tr>
+    <tr><th>ss(".newrule9").property({"padding": "10px", "font-size": "12px"}).property("padding");</th><td class="e">"10px 10px 10px 10px"</td><td class="r"></td></tr>
     <tr><th>ss(".newrule9").property("font-size");</th>                                 <td class="e">"12px"</td>         <td class="r"></td></tr>
 
     <!-- function to get rule array, remove all rules, then add them in again -->

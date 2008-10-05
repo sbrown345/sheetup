@@ -1,6 +1,8 @@
 ﻿<?php 
     $title = "jQuery psudeo-class animation smooth";
 	$id = "eg";
+	$desc = "Make smooth menu animation easy.";
+	$keywords = "smooth menu, menu tween, javascript tween";
     @include_once "inc/header.php"; 
 ?>
 <script type="text/javascript" src="js/jquery-1.2.6.js"></script>     

@@ -1,6 +1,8 @@
 ﻿<?php 
     $title = "Examples";
 	$id = "eg";
+	$desc = "A list of example programs that use sheetUp";
+	$keywords = "sheetup examples, javascript library examples";
     @include_once "inc/header.php"; 
 ?>
            

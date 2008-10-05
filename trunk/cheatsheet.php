@@ -1,6 +1,8 @@
 ﻿<?php 
     $title = "sheetUp Stylesheet Playground/Cheatsheet";
 	$id = "cheat";
+	$desc = "How to use the sheetUp Javascript library all in one page.";
+	$keywords = "";
     @include_once "inc/header.php"; 
 ?>
     <script src="js/sheetup.js" type="text/javascript"></script>
