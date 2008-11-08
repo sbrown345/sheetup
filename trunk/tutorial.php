@@ -1,7 +1,7 @@
-﻿<?php 
+<?php 
     $title = "Tutorial";
 	$id = "tut";
-	$desc = "Learn sheetUp with this dynamic tutorial.";
+	$desc = "Learn the sheetUp javascript stylesheet library with this dynamic tutorial.";
 	$keywords = "css tutorial, dom css tutorial, dom css learning, stylesheet dom learning, dom tutorial, teaching dom stylesheets";
     @include_once "inc/header.php"; 
 ?>

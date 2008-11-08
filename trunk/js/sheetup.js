@@ -66,7 +66,7 @@
 var undefined,
     _ss, //self
     isCssFile = /.*\.css$/i, //no query string support
-    isRule = /\b[ \w.0-9~#:*-|\[\]$^\n\f\r\t]+\{[;\w:_()=.%\t\n\f\r\ \\"'#,-]*\}/gi,    //@media does not support and doesnt support comments inside the {} ((why not just add \ and * as supported?  @import?
+    isRule = /[ \w.0-9~#:*-|\[\]$^\n\f\r\t]+\{[;\w:_()=.%\t\n\f\r\ \\"'#,-]*\}/gi,   // try [^\s] at start  so it doest match white space in front  //@media does not support and doesnt support comments inside the {} ((why not just add \ and * as supported?  @import?
               //needs a bit of housekeeping                                                               
 
     ss = window.ss = window.sheetUp = function(selector, context, findSelector) { 

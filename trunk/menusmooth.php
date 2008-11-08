@@ -1,7 +1,7 @@
-﻿<?php 
+<?php 
     $title = "jQuery psudeo-class animation smooth";
 	$id = "eg";
-	$desc = "Make smooth menu animation easy.";
+	$desc = "Makes smooth javascript and css menu animation easy.";
 	$keywords = "smooth menu, menu tween, javascript tween";
     @include_once "inc/header.php"; 
 ?>
@@ -12,6 +12,10 @@
  <!--      
 <p>This jQuery plugin searches for any rules with -ss-psuedo-fix- in the stylesheet, (will implement later)<br />
  stores the :hover variables and deletes it. Then for each object  </p>
+ 
+ Could do all :hover psudeos like so:
+ Search for all with :hover, then use that selectorText with jQuery  to select the things to add animation to
+ 
 -->
 
 
