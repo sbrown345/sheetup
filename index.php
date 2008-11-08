@@ -13,7 +13,8 @@
 <h2>News</h2>
 <p><strong>With sheetUp to help I've been making an in-browser CSS/HTML editor. Try it out via
  <a title="Click here to test it out" style="text-decoration:underline;" rel="nowfollow" href="javascript:var%20scr=document.createElement('script');scr.setAttribute('src','http://sheetup.com/ted/ted2.js');document.body.appendChild(scr);void(0);">bookmarklet</a></strong>. 
-It is <em>kinda buggy</em> at the mo and only really works in Firefox 3 and 3.1.</p>
+It is <em>kinda buggy</em> at the mo and only really works in Firefox 3 and 3.1.</p> 
+<p><a href="http://uk.youtube.com/watch?v=uxF7zFMCzIY" title="templateEd html/css editor video preview">YouTube Video here</a></p>
 
 <p>And here's the <a href="http://code.google.com/p/templated/">undeveloped google code page for <em>templateEd</em></a>. tEd or templateEd is designed 
 for editing basic web pages, in-browser. It features basic code highlighting, css formatting (right click in the css window) and you can save disk.
