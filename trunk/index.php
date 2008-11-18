@@ -11,16 +11,17 @@
 <p>sheetUp is a javascript stylesheet library to simplyify the manipulation of DOM style sheet objects.</p>
 <div id="news">
 <h2>News</h2>
-<p><strong>With sheetUp to help I've been making an in-browser CSS/HTML editor. Try it out via
- <a title="Click here to test it out" style="text-decoration:underline;" rel="nowfollow" href="javascript:var%20scr=document.createElement('script');scr.setAttribute('src','http://sheetup.com/ted/ted2.js');document.body.appendChild(scr);void(0);">bookmarklet</a></strong>. 
+<p><strong>With sheetUp to help I've been making an in-browser CSS/HTML editor. Try it out right now by clicking 
+ <a title="Click here to test it out" style="text-decoration:underline;" rel="nowfollow" href="javascript:var%20scr=document.createElement('script');scr.setAttribute('src','http://templateed.com/ted2.js');document.body.appendChild(scr);void(0);">this bookmarklet</a></strong>. 
 It is <em>kinda buggy</em> at the mo and only really works in Firefox 3 and 3.1.</p> 
+  
 <p><a href="http://uk.youtube.com/watch?v=uxF7zFMCzIY" title="templateEd html/css editor video preview">YouTube Video here</a></p>
 
-<p>And here's the <a href="http://code.google.com/p/templated/">undeveloped google code page for <em>templateEd</em></a>. tEd or templateEd is designed 
-for editing basic web pages, in-browser. It features basic code highlighting, css formatting (right click in the css window) and you can save disk.
- Notice the small tab in the top left hand of the screen, and you can drag, resize and maximise the windows.</p>
-<p>The save features only work locally so you can try it out with <a href="ted/tedtest.zip">this rather basic template which includes a link to 
-the bookmarklet.</a></p>
+<p>
+<a href="http://templateed.com/">tEd or templateEd</a> is designed for editing basic web pages, in-browser. It features basic code highlighting, css formatting and you can even save to disk.</p>
+
+  
+  
 </div>
 <div class="leftbox">
 	<div id="features">
@@ -34,7 +35,7 @@ the bookmarklet.</a></p>
 			<li>Add and remove stylesheets</li>
 			<li>Easily iterate through sheets, rules and properties </li>
 			<li>@import rule support</li>
-			<li>Tested with IE 5.5+, Firefox 3, Opera 9.6, Safari 2.1, Chrome.</li>
+			<li>Tested with IE 5.5+, Firefox 3, Opera 9.6, Safari 2.1, Chrome</li>
 		</ul>
 		
 		
