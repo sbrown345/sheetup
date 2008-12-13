@@ -1046,6 +1046,8 @@ newSS: function(cssText, title) {
         //or perhaps return false here, and do something
         //perhaps closures might elp http://ajaxian.com/archives/secrets-of-the-javascript-ninja-a-sneak-peak-for-ajaxians
             
+           
+        //can i have an onload event or something?
             
         return this; //quick  fix for now
             

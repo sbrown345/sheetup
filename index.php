@@ -8,21 +8,6 @@
 <script src="js/sheetup.js" type="text/javascript"></script>
 <div id="home">
 
-<p>sheetUp is a javascript stylesheet library to simplyify the manipulation of DOM style sheet objects.</p>
-<div id="news">
-<h2>News</h2>
-<p><strong>With sheetUp to help I've been making an in-browser CSS/HTML editor. Try it out right now by clicking 
- <a title="Click here to test it out" style="text-decoration:underline;" rel="nowfollow" href="javascript:var%20scr=document.createElement('script');scr.setAttribute('src','http://templateed.com/ted2.js');document.body.appendChild(scr);void(0);">this bookmarklet</a></strong>. 
-It is <em>kinda buggy</em> at the mo and only really works in Firefox 3 and 3.1.</p> 
-  
-<p><a href="http://uk.youtube.com/watch?v=uxF7zFMCzIY" title="templateEd html/css editor video preview">YouTube Video here</a></p>
-
-<p>
-<a href="http://templateed.com/">tEd or templateEd</a> is designed for editing basic web pages, in-browser. It features basic code highlighting, css formatting and you can even save to disk.</p>
-
-  
-  
-</div>
 <div class="leftbox">
 	<div id="features">
 		<h2>What?</h2>
@@ -153,6 +138,31 @@ It is <em>kinda buggy</em> at the mo and only really works in Firefox 3 and 3.1.
 </div>
 
 
+<p>sheetUp is a javascript stylesheet library to simplyify the manipulation of DOM style sheet objects.</p>
+<div id="news">
+  <h2>News</h2>
+  <p>
+    <strong>
+      With sheetUp to help I've been making an in-browser CSS/HTML editor. Try it out right now by clicking
+      <a title="Click here to test it out" style="text-decoration:underline;" rel="nowfollow" href="javascript:var%20scr=document.createElement('script');scr.setAttribute('src','http://templateed.com/ted2.js');document.body.appendChild(scr);void(0);">this bookmarklet</a>
+    </strong>.
+    It is <em>kinda buggy</em> at the mo and only really works in Firefox 3 and 3.1.
+  </p>
+
+  <p>
+    <a href="http://uk.youtube.com/watch?v=uxF7zFMCzIY" title="templateEd html/css editor video preview">YouTube Video here</a>
+  </p>
+
+  <p>
+    <a href="http://templateed.com/">tEd or templateEd</a> is designed for editing basic web pages, in-browser. It features basic code highlighting, css formatting and you can even save to disk.
+  </p>
+
+
+
+</div>
+
+<?php @include_once "inc/footer.php"; ?>
+
 
 
 
@@ -172,5 +182,5 @@ It is <em>kinda buggy</em> at the mo and only really works in Firefox 3 and 3.1.
 };
 //]]>
 </script>
-<?php @include_once "inc/footer.php"; ?>
+
         
