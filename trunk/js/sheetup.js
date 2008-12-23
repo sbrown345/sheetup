@@ -1061,7 +1061,7 @@ newSS: function(cssText, title) {
         cssNode.title = title;
         head.appendChild(cssNode);
         cssNode.appendChild(document.createTextNode(cssText));
-        cssNode = cssNode.sheet;        
+        cssNode = cssNode.sheet;
         
         return this; //quick fix for now        
         //if(init) return this.init(cssNode);             

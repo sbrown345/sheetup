@@ -1,0 +1,25 @@
+<h2>A little bookmarklet loader app</h2>
+
+<p>Got this idea from <a href="http://www.learningjquery.com/2008/06/updated-jquery-bookmarklet">Karl 
+Swedberg's jQueryify.</a> </p>
+
+<p>I wanted to extend the idea to allowinga user to load up any library or tools they wanted. 
+For now the tool is limited to Firebug and the libraries are limited to jQuery, Prototype, 
+ MooTools and sheetUp. I've quickly tested it on IE6/7, Opera 10, Firefox 3</p>
+
+<p>The default options are jQuery with Firebug but I've added in a few more possible options. 
+If you double click the bookmarklet then it will just load those without showing the diaglog, 
+ otherwise the default options will be checked when the dialog opens.</p>
+
+
+<p><a href="javascript:var%20bookyDefaults='Firebug,jQuery';function%20loadScript(url,callback){url=typeof%20url==='undefined'?'http://localhost/booky/bookywooky.js':url;var%20scr=document.createElement('script');scr.setAttribute('src',url);document.getElementsByTagName('body')[0].appendChild(scr);}if(typeof%20bookyStatus==='undefined'){var%20bookyStatus='waiting2ndclick';var%20bookyFunc1=window.setTimeout(function(){bookyStatus='loading1';loadScript('http://localhost/booky/bookywooky.js');},200);}else%20if(bookyStatus==='waiting2ndclick'){window.clearTimeout(bookyFunc1);bookyStatus='loading2';loadScript('http://localhost/booky/bookywooky.js');}else{alert('Loaded%20already');}void(0);" title="BookyWooky Bookmarklet">BookyWooky</a></p>
+
+<ul>
+    <li>Add custom scripts to the bookmarklet e.g. other tools and libraries</li>
+    <li>Major code clean up</li>
+    <li>Script onload for ie</li>
+    <li>Perhaps some snazzy fade or slide in/out</li>
+    <li>Some way of auto-managing conflicts between libraries</li>
+    <li>Webkit compatiblity</li>
+    <li>Double-click bookmarklet in IE</li>
+</ul>
