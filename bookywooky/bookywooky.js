@@ -16,50 +16,68 @@ todo
 //make little fadein or slide animtion
 //way to add custom libraries...AND TOOLS!!!!!!!. - could be really useful then!
 
+/*
+var bookyMerge = {
+    Test : {name: "Test", url: "new url", loaded: new Function, docs: "aoo"},
+    Tedst : {name: "Test", url: "new url", loaded: new Function, docs: "aoo"},
+    Tesdsdst : {name: "Test", url: "new url", loaded: new Function, docs: "aoo"},
+    Tefst : {name: "Tessdsdt", url: "new url", loaded: new Function, docs: "aoo"},
+    Prototype : null,
+    sheetUp : null,
+    Firebug : null
+};
+*/
 
 var defaults = {
-    Firebug :   {name: "Firebug 1.2",           url: "",
+    Firebug :   {name: "Firebug 1.2",           url:    "",
                                                 loaded: function() {return document.getElementById("_firebugConsole") !== null || typeof firebug !== "undefined"},
-                                                docs:"http://getfirebug.com/docs.html", 
-                                                func: function() {
-                                                    document.location.href = "javascript:"+
-                                                    "var firebug=document.createElement('script');"+
-                                                    "firebug.setAttribute('src','http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js');"+
-                                                    "document.body.appendChild(firebug);"+
-                                                    "(function(){if(window.firebug.version){firebug.init();document.getElementById('bookyDiv').innerHTML += '<div class=\"bookyLoaded\">Loaded Firebug</div>';}else{setTimeout(arguments.callee);}})();"+
-                                                    "void(firebug);";
+                                                docs:   "http://getfirebug.com/docs.html", 
+                                                func:   function() {
+                                                        document.location.href = "javascript:"+
+                                                        "var firebug=document.createElement('script');"+
+                                                        "firebug.setAttribute('src','http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js');"+
+                                                        "document.body.appendChild(firebug);"+
+                                                        "(function(){if(window.firebug.version){firebug.init();document.getElementById('bookyDiv').innerHTML += '<div class=\"bookyLoaded\">Loaded Firebug</div>';}else{setTimeout(arguments.callee);}})();"+
+                                                        "void(firebug);";
                                                 }},
                                                 
-    jQuery :    {name: "jQuery 1.2.6",          url: "http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js", 
+    jQuery :    {name: "jQuery 1.2.6",          url:    "http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js", 
                                                 loaded: function() {return typeof jQuery !== "undefined"},
-                                                docs:"http://docs.jquery.com/"},
+                                                docs:   "http://docs.jquery.com/"},
                                                 
-    Prototype : {name: "Prototype 1.6.0.3",     url: "http://prototypejs.org/assets/2008/9/29/prototype-1.6.0.3.js", 
+    Prototype : {name: "Prototype 1.6.0.3",     url:    "http://prototypejs.org/assets/2008/9/29/prototype-1.6.0.3.js", 
                                                 loaded: function() {return typeof Prototype !== "undefined"},
-                                                docs:"http://prototypejs.org/api"},
+                                                docs:"  http://prototypejs.org/api"},
                                                 
-    MooTools :  {name: "MooTools 1.2.1 ",       url: "http://mootools.net/download/get/mootools-1.2.1-core-yc.js", 
+    MooTools :  {name: "MooTools 1.2.1 ",       url:    "http://mootools.net/download/get/mootools-1.2.1-core-yc.js", 
                                                 loaded: function() {return typeof MooTools !== "undefined"},
-                                                docs:"http://mootools.net/docs/"},
+                                                docs:   "http://mootools.net/docs/"},
                                                 
-    sheetUp :   {name: "sheetUp 0.1.1",         url: "http://sheetup.com/js/sheetup.packed.js", 
+    sheetUp :   {name: "sheetUp 0.1.1",         url:    "http://sheetup.com/js/sheetup.packed.js", 
                                                 loaded: function() {return typeof sheetUp !== "undefined"},
-                                                docs:"http://code.google.com/p/sheetup/w/list"}   
+                                                docs:   "http://code.google.com/p/sheetup/w/list"}   
 };
 
 
-function mergeCustomLibs() {
-    //goes thru updating default libs... e.g. if Firebug is undefined it removes it...
+function mergeCustom() {
+    if(typeof bookyMerge !== "object")
+        return;
+    
+    
+    for(def in defaults) {    
+        for(merg in bookyMerge) {
+            defaults[merg] = bookyMerge[merg];
+        }        
+    }      
+    //remove nulls
+    for(def in defaults) {     
+        if(defaults[def] === null)
+            delete defaults[def]; 
+    }
 }
+mergeCustom();
 
 
-function loadScript(url, callback) {
-    var scr=document.createElement('script');
-        scr.src = url;
-        scr.onload = callback;
-    document.body.appendChild(scr);
-}
-   
 if(bookyStatus       === "loading1") 
     singleClick();
 else if (bookyStatus === "loading2") {     
@@ -137,6 +155,13 @@ function loadLib(url, libName, func) {
 function slide() {}
 function fade () {}
 
+function loadScript(url, callback) {
+    var scr=document.createElement('script');
+        scr.src = url;
+        scr.onload = callback;
+    document.body.appendChild(scr);
+}
+   
 function showWindow(html) {
     window.scrollTo(0,0);//it is absolutely positioned at the top so move the viewport there
     
@@ -198,9 +223,6 @@ function bookyCloseFunc() {
     //shoud hvae 1 big func for whoel thingm, then set that to undefeind and remove that
    
 }
-
-
-
 
 })();
 
