@@ -7,29 +7,26 @@
 //http://userjs.up.seesaa.net/js/bookmarklet.html
 //new double click one
 
-var bookyDefaults = "Firebug, jQuery";
+var bookyBaseUrl='http://localhost/sheetup/bookywooky/', bookyDefaults = 'Firebug,jQuery';
 
 function loadScript(url, callback) {
-    url = typeof url === "undefined" ? 'http://localhost/booky/bookywooky.js' : url;
+    url = typeof url === 'undefined' ? bookyBaseUrl+'bookywooky.js' : url;
     var scr=document.createElement('script');
     scr.setAttribute('src', url);
     document.getElementsByTagName('head')[0].appendChild(scr);
 }
 if(typeof bookyStatus === 'undefined') {   
-    var bookyStatus = 'waiting2ndclick';
-    
+    var bookyStatus = 'waiting2ndclick';    
     var bookyFunc1 = window.setTimeout(function() { 
         bookyStatus = 'loading1';
-        loadScript('http://localhost/booky/bookywooky.js');
-        
+        loadScript();        
     }, 200);
     
 } else if (bookyStatus === 'waiting2ndclick') {    
     window.clearTimeout(bookyFunc1);
     bookyStatus = 'loading2';
-    loadScript('http://localhost/booky/bookywooky.js');    
-    
-} else {alert('Loaded already');}
+    loadScript();        
+} else {alert('BookyWooky is already loaded!');}
 void(0);
 
 
