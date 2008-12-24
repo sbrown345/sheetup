@@ -25,6 +25,32 @@ todo
 //way to add custom libraries...AND TOOLS!!!!!!!. - could be really useful then!
 
 
+var defaults = {
+    Firebug :   {name: "Firebug 1.2",           url: "", 
+                                                docs:"http://getfirebug.com/docs.html", func: loadFB},
+                                                
+    jQuery :    {name: "jQuery 1.2.6",          url: "http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js", 
+                                                docs:"http://docs.jquery.com/"},
+                                                
+    Prototype : {name: "Prototype 1.6.0.3",     url: "http://prototypejs.org/assets/2008/9/29/prototype-1.6.0.3.js", 
+                                                docs:"http://prototypejs.org/api"},
+                                                
+    MooTools :  {name: "MooTools 1.2.1 ",       url: "http://mootools.net/download/get/mootools-1.2.1-core-yc.js", 
+                                                docs:"http://mootools.net/docs/"},
+                                                
+    sheetUp :   {name: "sheetUp 0.1.2",         url: "http://sheetup.com/js/sheetup.packed.js", 
+                                                docs:"http://code.google.com/p/sheetup/w/list"}   
+};
+
+
+function mergeCustomLibs() {
+    //goes thru updating default libs... e.g. if Firebug is undefined it removes it...
+}
+
+
+
+
+
 function loadScript(url, callback) {
     var scr=document.createElement('script');
     //scr.setAttribute('src', url);
@@ -81,24 +107,36 @@ function gid(id) {return document.getElementById(id);}
 
 //menu
 if(bookyStatus == "loading1") {
-    var bookyHtml = 
-               "<input type=checkbox id=bookyFb> <label for=bookyFb>Firebug 1.2</label> <a title=Documentation target=_blank href=http://getfirebug.com/docs.html>?</a><br>"+  
-               "<input type=checkbox id=bookyJ> <label for=bookyJ>jQuery 1.2.6</label> <a title=Documentation  target=_blank href=http://docs.jquery.com/>?</a><br>"+  
-               "<input type=checkbox id=bookyP> <label for=bookyP>Prototype 1.6.0.3</label> <a title=Documentation  target=_blank href=http://prototypejs.org/api>?</a><br>"+  
-               "<input type=checkbox id=bookyMoo> <label for=bookyMoo>MooTools 1.2.1</label> <a title=Documentation  target=_blank href=http://mootools.net/docs/>?</a><br>"+  
-               "<input type=checkbox id=bookysheet> <label for=bookysheet>sheetUp</label> <a title=Documentation  target=_blank href=http://code.google.com/p/sheetup/w/list>?</a><br>"+  
-               "<input type=button id=bookyGo value='Load JS'>"+
-               ""+
-               "<div id=bookyBookmarkDefaults title='This is a generated bookmarklet with these options set as default. Double-click the bookmarklet to open them without this dialog.'></div>";
+    var bookyHtml = "";
+               /*"<input type=checkbox id=bookyFirebug> <label for=bookyFirebug>Firebug 1.2</label> <a title=Documentation target=_blank href=http://getfirebug.com/docs.html>?</a><br>"+  
+               "<input type=checkbox id=bookyjQuery> <label for=bookyjQuery>jQuery 1.2.6</label> <a title=Documentation  target=_blank href=http://docs.jquery.com/>?</a><br>"+  
+               "<input type=checkbox id=bookyPrototype> <label for=bookyPrototype>Prototype 1.6.0.3</label> <a title=Documentation  target=_blank href=http://prototypejs.org/api>?</a><br>"+  
+               "<input type=checkbox id=bookyMooTools> <label for=bookyMooTools>MooTools 1.2.1</label> <a title=Documentation  target=_blank href=http://mootools.net/docs/>?</a><br>"+  
+               "<input type=checkbox id=bookysheetUp> <label for=bookysheetUp>sheetUp</label> <a title=Documentation  target=_blank href=http://code.google.com/p/sheetup/w/list>?</a><br>"+  
+              */
+
+    
+    for(def in defaults) {
+        console.log(def, defaults[def]);
+        var current = defaults[def];
+        bookyHtml += "<input type='checkbox' id='booky"+def+"'> <label for='booky"+def+"'>"+current.name+"</label> <a title='Documentation' target='_blank' href='"+current.docs+"'>?</a><br />";
+        console.log(bookyHtml);
+    
+    }   
+    
+    bookyHtml +="<input type=button id=bookyGo value='Load JS'>"+
+                ""+
+                "<div id=bookyBookmarkDefaults title='This is a generated bookmarklet with these options set as default. Double-click the bookmarklet to open them without this dialog.'></div>";
                
+    
                               
     showWindow(bookyHtml);
     
-    var firebugbooky = gid("bookyFb"), //careful with vars...should get rid of these incase
-        prototype = gid("bookyP"),
-        mootools = gid("bookyMoo"),   
-        jquery = gid("bookyJ");      
-        sheetup = gid("bookysheet");    
+    var firebugbooky = gid("bookyFirebug"), //careful with vars...should get rid of these incase  
+        jquery = gid("bookyjQuery"),    
+        prototype = gid("bookyPrototype"),
+        mootools = gid("bookyMooTools"),   
+        sheetup = gid("bookysheetUp");    
         
     //setup checkboxes
     //disable firebug if its loaded already
@@ -144,23 +182,26 @@ if(bookyStatus == "loading1") {
         if(sheetup.checked)
             loadLib("http://sheetup.com/js/sheetup.packed.js", "sheetUp");
                     
-        gid("bookyFb")   .disabled =
-        gid("bookyJ")    .disabled =
-        gid("bookyP")    .disabled =
-        gid("bookyMoo")  .disabled =
-        gid("bookysheet").disabled =
+        gid("bookyFirebug")   .disabled =
+        gid("bookyjQuery")    .disabled =
+        gid("bookyPrototype")    .disabled =
+        gid("bookyMooTools")  .disabled =
+        gid("bookysheetUp").disabled =
         gid("bookyGo")   .disabled = true;          
             
     }
     
     
     
+    
+    
+    
      //Events
-    gid("bookyFb").onclick =
-    gid("bookyP").onclick =
-    gid("bookyJ").onclick =
-    gid("bookyMoo").onclick =
-    gid("bookysheet").onclick = makeDefaultBookmarklet;
+    gid("bookyFirebug").onclick =
+    gid("bookyPrototype").onclick =
+    gid("bookyjQuery").onclick =
+    gid("bookyMooTools").onclick =
+    gid("bookysheetUp").onclick = makeDefaultBookmarklet;
     
     gid("bookyGo").onclick = loadStuff;
 
