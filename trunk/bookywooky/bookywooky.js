@@ -18,12 +18,7 @@ todo
 
 /*
 var bookyMerge = {
-    Test : {name: "Test", url: "new url", loaded: new Function, docs: "aoo"},
-    Tedst : {name: "Test", url: "new url", loaded: new Function, docs: "aoo"},
-    Tesdsdst : {name: "Test", url: "new url", loaded: new Function, docs: "aoo"},
-    Tefst : {name: "Tessdsdt", url: "new url", loaded: new Function, docs: "aoo"},
-    Prototype : null,
-    sheetUp : null,
+    Test : {name: "Test", url: "new url", loaded: function() {}, docs: "aoo", func: function() {}},
     Firebug : null
 };
 */
@@ -37,7 +32,8 @@ var defaults = {
                                                         "var firebug=document.createElement('script');"+
                                                         "firebug.setAttribute('src','http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js');"+
                                                         "document.body.appendChild(firebug);"+
-                                                        "(function(){if(window.firebug.version){firebug.init();document.getElementById('bookyDiv').innerHTML += '<div class=\"bookyLoaded\">Loaded Firebug</div>';}else{setTimeout(arguments.callee);}})();"+
+                                                        "(function(){if(window.firebug.version){firebug.init();document.getElementById('bookyDiv').innerHTML "+
+                                                        "+= '<div class=\"bookyLoaded\">Loaded Firebug</div>';}else{setTimeout(arguments.callee);}})();"+
                                                         "void(firebug);";
                                                 }},
                                                 

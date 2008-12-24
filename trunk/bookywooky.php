@@ -25,4 +25,113 @@
    &lt;-- Try clicking it now. Works best with Firefox if dragged onto the Bookmarks Toolbar.
   </p>
 
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h2>Modifying BookyWooky</h2>
+
+<p>You can update the bookmarklet to use other bookmarklets.</p>
+
+
+
+
+
+<fieldset>
+  <p>
+    <label for="custom">The following custom bookmarklet that removes the normal jQuery from the list and adds jQuery 1.3 Beta 1:</label>
+<textarea id="custom" style="width:800px;height:200px;">
+var bookyMerge = {
+    jQuery13: {
+                  name:   "jQuery 1.3 Beta 1", 
+                  url:    "http://code.jquery.com/jquery-1.3b1.js", 
+                  loaded: function() {return typeof jQuery !== "undefined"}, 
+                  docs:   "http://blog.jquery.com/2008/12/22/help-test-jquery-13-beta-1/"
+              },
+              
+    jQuery:   null
+};
+</textarea>
+</p>
+<p>
+<label for="defaultLoading">Default things to be checked on a single-click or loaded on a double-click:</label>
+<input style="width:800px;display:block;" id="defaultLoading" value="bookyDefaults='Firebug,jQuery13';" /></p>
+
+<pre id="pre2"></pre>
+<p>
+  Your generated bookmark: <a href="" id="customBookmarklet">BookyWooky</a>
+</p>
+</fieldset>
+
+<script type="text/javascript">
+  var ta = document.getElementById("custom"),
+  input = document.getElementById("defaultLoading"),
+  pre2 = document.getElementById("pre2"),
+  customBookmarklet = document.getElementById("customBookmarklet");
+
+  ta.onkeyup = function() {
+  pre2.innerHTML = customBookmarklet.href =
+  defaultLoading.value+
+  escape(ta.value.replace(/\n/i, ""));
+  };
+</script>
+
+
+
+
+
+<h3>Custom loading function</h3>
+<p>If the bookmarklet requres a special function to load. E.g. it might need to run an init function like Firebug does then a forth paramenter can be added to bookyMerge. E.g. <code>{name: "", loaded: Function, docs: "", func: function() {}}</code>
+. This code will need to append the script to the page.</p>
+
+<p>The defaults that the custom settings gets merged into are the following:</p>
+
+<pre>
+
+var defaults = {
+    Firebug :   {name: "Firebug 1.2",           
+    url:        "",
+    loaded:     function() {return document.getElementById("_firebugConsole") !== null || typeof firebug !== "undefined"},
+    docs:       "http://getfirebug.com/docs.html",
+    func:       function() {
+                    document.location.href = "javascript:"+
+                    "var firebug=document.createElement('script');"+
+                    "firebug.setAttribute('src','http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js');"+
+                    "document.body.appendChild(firebug);"+
+                    "(function(){if(window.firebug.version){firebug.init();document.getElementById('bookyDiv').innerHTML "+
+                    "+= '&lt;div class=\"bookyLoaded\"&gt;Loaded Firebug&lt;/div&gt;';}else{setTimeout(arguments.callee);}})();"+
+                    "void(firebug);";
+    }},
+
+    jQuery :    {name: "jQuery 1.2.6",          
+    url:        "http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js",
+                loaded: function() {return typeof jQuery !== "undefined"},
+                docs:   "http://docs.jquery.com/"},
+
+    Prototype : {name: "Prototype 1.6.0.3",     
+    url:        "http://prototypejs.org/assets/2008/9/29/prototype-1.6.0.3.js",
+                loaded: function() {return typeof Prototype !== "undefined"},
+                docs:"  http://prototypejs.org/api"},
+
+    MooTools :  {name: "MooTools 1.2.1 ",       
+    url:        "http://mootools.net/download/get/mootools-1.2.1-core-yc.js",
+                loaded: function() {return typeof MooTools !== "undefined"},
+                docs:   "http://mootools.net/docs/"},
+
+    sheetUp :   {name: "sheetUp 0.1.1",         
+    url:        "http://sheetup.com/js/sheetup.packed.js",
+                loaded: function() {return typeof sheetUp !== "undefined"},
+                docs:   "http://code.google.com/p/sheetup/w/list"}
+};
+
+
+
+</pre>
+
+
+
+
 <?php @include_once "inc/footer.php"; ?>
