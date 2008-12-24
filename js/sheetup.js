@@ -1076,7 +1076,7 @@ newSS: function(cssText, title) {
 newSSTimeout: function() {
 //http://blog.jcoglan.com/2007/10/30/asynchronous-function-chaining-in-javascript/
 //http://dev.jquery.com/view/trunk/plugins/ajaxQueue/jquery.ajaxQueue.js
-
+//arguments.callee..
 
 
 //http://www.learningjquery.com/2007/01/effect-delay-trick THIS LOOKS PROMISING

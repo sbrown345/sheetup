@@ -46,10 +46,10 @@
 <textarea id="custom" style="width:800px;height:200px;">
 var bookyMerge = {
     jQuery13: {
-                  name:   "jQuery 1.3 Beta 1", 
-                  url:    "http://code.jquery.com/jquery-1.3b1.js", 
-                  loaded: function() {return typeof jQuery !== "undefined"}, 
-                  docs:   "http://blog.jquery.com/2008/12/22/help-test-jquery-13-beta-1/"
+                  name:   'jQuery 1.3 Beta 1', 
+                  url:    'http://code.jquery.com/jquery-1.3b1.js', 
+                  loaded: function() {return typeof jQuery !== 'undefined'}, 
+                  docs:   'http://blog.jquery.com/2008/12/22/help-test-jquery-13-beta-1/'
               },
               
     jQuery:   null
@@ -80,19 +80,20 @@ var bookyMerge = {
 </script>
 
 
-
+<br />
+<br />
 
 
 <h3>Custom loading function</h3>
 <p>If the bookmarklet requres a special function to load. E.g. it might need to run an init function like Firebug does then a forth paramenter can be added to bookyMerge. E.g. <code>{name: "", loaded: Function, docs: "", func: function() {}}</code>
 . This code will need to append the script to the page.</p>
 
-<p>The defaults that the custom settings gets merged into are the following:</p>
+<p>The defaults array that the custom settings gets merged into are the following, notice the Firebug init func:</p>
 
 <pre>
 
 var defaults = {
-    Firebug :   {name: "Firebug 1.2",           
+    Firebug:    {name: "Firebug 1.2",           
     url:        "",
     loaded:     function() {return document.getElementById("_firebugConsole") !== null || typeof firebug !== "undefined"},
     docs:       "http://getfirebug.com/docs.html",
@@ -103,26 +104,25 @@ var defaults = {
                     "document.body.appendChild(firebug);"+
                     "(function(){if(window.firebug.version){firebug.init();document.getElementById('bookyDiv').innerHTML "+
                     "+= '&lt;div class=\"bookyLoaded\"&gt;Loaded Firebug&lt;/div&gt;';}else{setTimeout(arguments.callee);}})();"+
-                    "void(firebug);";
-    }},
+                    "void(firebug);";}},
 
-    jQuery :    {name: "jQuery 1.2.6",          
-    url:        "http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js",
+    jQuery:     {name:  "jQuery 1.2.6",          
+                url:    "http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js",
                 loaded: function() {return typeof jQuery !== "undefined"},
                 docs:   "http://docs.jquery.com/"},
 
-    Prototype : {name: "Prototype 1.6.0.3",     
-    url:        "http://prototypejs.org/assets/2008/9/29/prototype-1.6.0.3.js",
+    Prototype:  {name:  "Prototype 1.6.0.3",     
+                url:    "http://prototypejs.org/assets/2008/9/29/prototype-1.6.0.3.js",
                 loaded: function() {return typeof Prototype !== "undefined"},
-                docs:"  http://prototypejs.org/api"},
+                docs:   "http://prototypejs.org/api"},
 
-    MooTools :  {name: "MooTools 1.2.1 ",       
-    url:        "http://mootools.net/download/get/mootools-1.2.1-core-yc.js",
+    MooTools:   {name:  "MooTools 1.2.1 ",       
+                url:    "http://mootools.net/download/get/mootools-1.2.1-core-yc.js",
                 loaded: function() {return typeof MooTools !== "undefined"},
                 docs:   "http://mootools.net/docs/"},
 
-    sheetUp :   {name: "sheetUp 0.1.1",         
-    url:        "http://sheetup.com/js/sheetup.packed.js",
+    sheetUp:   {name:   "sheetUp 0.1.1",         
+                url:    "http://sheetup.com/js/sheetup.packed.js",
                 loaded: function() {return typeof sheetUp !== "undefined"},
                 docs:   "http://code.google.com/p/sheetup/w/list"}
 };

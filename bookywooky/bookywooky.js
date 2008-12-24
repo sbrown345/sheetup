@@ -33,7 +33,7 @@ var defaults = {
                                                         "firebug.setAttribute('src','http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js');"+
                                                         "document.body.appendChild(firebug);"+
                                                         "(function(){if(window.firebug.version){firebug.init();document.getElementById('bookyDiv').innerHTML "+
-                                                        "+= '<div class=\"bookyLoaded\">Loaded Firebug</div>';}else{setTimeout(arguments.callee);}})();"+
+                                                        "+= '<div  style=\"color:#fff\"  class=\"bookyLoaded\">Loaded Firebug</div>';}else{setTimeout(arguments.callee);}})();"+
                                                         "void(firebug);";
                                                 }},
                                                 
@@ -92,11 +92,11 @@ function singleClick() {
     
     for(def in defaults) {
         var current = defaults[def];
-        bookyHtml += "<input type='checkbox' id='booky"+def+"'> <label for='booky"+def+"'>"+current.name+"</label> <a title='Documentation' target='_blank' href='"+current.docs+"'>?</a><br />";
+        bookyHtml += "<input type='checkbox' id='booky"+def+"'> <label style='color:#fff' for='booky"+def+"'>"+current.name+"</label> <a style='color:#eee;text-decoration:none;border-bottom:1px dotted #fff;' title='Documentation' target='_blank' href='"+current.docs+"'>?</a><br />";
     }   
     
-    bookyHtml +="<input type=button id=bookyGo value='Load JS'>"+
-                "<div id=bookyBookmarkDefaults title='This is a generated bookmarklet with these options set as default. Double-click the bookmarklet to open them without this dialog.'></div>";
+    bookyHtml +="<input type=button id=bookyGo value='Load JS' style='float:right;border:none;position:relative;top:3px;'>"+
+                "<div id=bookyBookmarkDefaults style='padding-bottom:5px;' title='This is a generated bookmarklet with these options set as default. Double-click the bookmarklet to open them without this dialog.'></div>";
 
     showWindow(bookyHtml);
 
@@ -161,38 +161,17 @@ function loadScript(url, callback) {
 function showWindow(html) {
     window.scrollTo(0,0);//it is absolutely positioned at the top so move the viewport there
     
+    //Just add text to previously made window
     if(gid("bookyDiv")) {
         gid("bookyDiv").innerHTML += html;
     
     }
-    else {        
-    
-        var bookyCss = "#bookyDiv   {text-align:left;padding:5px;font-size:11px;font-family:Arial, sans-serif;position:absolute;left:0;top:0;color:fff;background:#000;width:190px;}" +
-                       "#bookyDiv label, #bookyDiv div.bookyLoaded{color:#fff !important;}"+
-                       "#bookyClose {color:red;cursor:pointer;float:right;padding:0px 7px 0 0;}"+
-                       "#bookyDiv a {color:#eee;text-decoration:none;border-bottom:1px dotted #fff;}"+
-                       "#bookyGo    {float:right;border:none;position:relative;top:3px;}"+
-                       "#bookyGo .bookyLoaded   {display:block;}"+
-                       "#bookyGo .bookyError    {color:red;font-weight:bold;}"+
-                       "#bookyBookmarkDefaults  {padding-bottom:5px;}";
-        
-        if(document.createStyleSheet) {   
-            document.createStyleSheet().cssText = bookyCss;
-        }   
-        else {  
-            var cssNode = document.createElement('style');
-            cssNode.type  = 'text/css';
-            cssNode.media = 'screen';
-            cssNode.rel   = 'stylesheet';
-            document.body.appendChild(cssNode);
-            cssNode.appendChild(document.createTextNode(bookyCss));
-            cssNode = cssNode.sheet;
-        }                
-    
-        var bookyHtml = "<span id=bookyClose onclick='document.getElementById(\"bookyDiv\").parentNode.removeChild(document.getElementById(\"bookyDiv\"));bookyStatus = undefined;' title='Close BookyWooky'>x</span>" +  html;    
-                   
+    else {
+        //Add HTML
+        var bookyHtml = "<span id=bookyClose style='color:red;cursor:pointer;float:right;padding:0px 7px 0 0;' onclick='document.getElementById(\"bookyDiv\").parentNode.removeChild(document.getElementById(\"bookyDiv\"));bookyStatus = undefined;' title='Close BookyWooky'>x</span>" +  html;    
         var bookyDiv = document.createElement("DIV");
         bookyDiv.id = "bookyDiv";
+        bookyDiv.setAttribute("style", "color:white;text-align:left;padding:5px;font-size:11px;font-family:Arial, sans-serif;position:absolute;left:0;top:0;color:fff;background:#000;width:190px;");
         bookyDiv.title = "BookyWooky - Load JavaScript libraries and Firebug console on to any webpage anywhere. http://sheetup.com/";
         bookyDiv.innerHTML = bookyHtml;
         document.body.appendChild(bookyDiv);
@@ -200,7 +179,7 @@ function showWindow(html) {
 }
 
 function makeDefaultBookmarklet() {
-    var html ="<a href=\"javascript:bookyDefaults='";       
+    var html ="<a style='color:#eee;text-decoration:none;border-bottom:1px dotted #fff;' href=\"javascript:bookyDefaults='";       
     
     for(def in defaults) {
         if(gid("booky"+def).checked)
