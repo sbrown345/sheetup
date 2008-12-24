@@ -167,12 +167,8 @@
 
   <p>Todo</p>
   <ul>
-    <li>Add custom scripts to the bookmarklet e.g. other tools and libraries</li>
-    <li>Major code clean up (and bookmarklet link)</li>
     <li>Script onload for ie</li>
     <li>Perhaps some snazzy fade or slide in/out</li>
-    <li>Some way of auto-managing conflicts between libraries</li>
-    <li>Webkit compatiblity</li>
     <li>Double-click bookmarklet in IE</li>
   </ul>
 -->
