@@ -1,9 +1,5 @@
-
 /*
-
 todo
-
-
     Add custom scripts to the bookmarklet e.g. other tools and libraries
     Major code clean up (and bookmarklet link)
     Script onload for ie
@@ -12,33 +8,42 @@ todo
     Webkit compatiblity
     Double-click bookmarklet in IE
 
-
-
 */
 
 
 (function() {
-
-//put into one big function.......anon
 //tidy up - easy to add another lib etc
 //make little fadein or slide animtion
 //way to add custom libraries...AND TOOLS!!!!!!!. - could be really useful then!
 
 
 var defaults = {
-    Firebug :   {name: "Firebug 1.2",           url: "", 
-                                                docs:"http://getfirebug.com/docs.html", func: loadFB},
+    Firebug :   {name: "Firebug 1.2",           url: "",
+                                                loaded: function() {return document.getElementById("_firebugConsole") !== null || typeof firebug !== "undefined"},
+                                                docs:"http://getfirebug.com/docs.html", 
+                                                func: function() {
+                                                    document.location.href = "javascript:"+
+                                                    "var firebug=document.createElement('script');"+
+                                                    "firebug.setAttribute('src','http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js');"+
+                                                    "document.body.appendChild(firebug);"+
+                                                    "(function(){if(window.firebug.version){firebug.init();document.getElementById('bookyDiv').innerHTML += '<div class=\"bookyLoaded\">Loaded Firebug</div>';}else{setTimeout(arguments.callee);}})();"+
+                                                    "void(firebug);";
+                                                }},
                                                 
     jQuery :    {name: "jQuery 1.2.6",          url: "http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js", 
+                                                loaded: function() {return typeof jQuery !== "undefined"},
                                                 docs:"http://docs.jquery.com/"},
                                                 
     Prototype : {name: "Prototype 1.6.0.3",     url: "http://prototypejs.org/assets/2008/9/29/prototype-1.6.0.3.js", 
+                                                loaded: function() {return typeof Prototype !== "undefined"},
                                                 docs:"http://prototypejs.org/api"},
                                                 
     MooTools :  {name: "MooTools 1.2.1 ",       url: "http://mootools.net/download/get/mootools-1.2.1-core-yc.js", 
+                                                loaded: function() {return typeof MooTools !== "undefined"},
                                                 docs:"http://mootools.net/docs/"},
                                                 
-    sheetUp :   {name: "sheetUp 0.1.2",         url: "http://sheetup.com/js/sheetup.packed.js", 
+    sheetUp :   {name: "sheetUp 0.1.1",         url: "http://sheetup.com/js/sheetup.packed.js", 
+                                                loaded: function() {return typeof sheetUp !== "undefined"},
                                                 docs:"http://code.google.com/p/sheetup/w/list"}   
 };
 
@@ -48,17 +53,90 @@ function mergeCustomLibs() {
 }
 
 
-
-
-
 function loadScript(url, callback) {
     var scr=document.createElement('script');
-    //scr.setAttribute('src', url);
-    scr.src = url;
-    scr.onload = callback;
+        scr.src = url;
+        scr.onload = callback;
     document.body.appendChild(scr);
 }
    
+if(bookyStatus       === "loading1") 
+    singleClick();
+else if (bookyStatus === "loading2") {     
+    doubleClick();
+}
+
+
+/***************************************
+    SINGLE AND DOUBLE CLICK FUNCS
+***************************************/
+
+function singleClick() {
+
+    
+    var bookyHtml = "";
+    
+    for(def in defaults) {
+        var current = defaults[def];
+        bookyHtml += "<input type='checkbox' id='booky"+def+"'> <label for='booky"+def+"'>"+current.name+"</label> <a title='Documentation' target='_blank' href='"+current.docs+"'>?</a><br />";
+    }   
+    
+    bookyHtml +="<input type=button id=bookyGo value='Load JS'>"+
+                "<div id=bookyBookmarkDefaults title='This is a generated bookmarklet with these options set as default. Double-click the bookmarklet to open them without this dialog.'></div>";
+
+    showWindow(bookyHtml);
+
+    for(def in defaults) {
+        var current = defaults[def];
+        if(current.loaded())
+            gid("booky"+def).disabled = true;
+        else if(bookyDefaults.indexOf(def) != -1)
+            gid("booky"+def).checked = true;        
+                
+        gid("booky"+def).onclick = makeDefaultBookmarklet;
+    }   
+    
+    gid("bookyGo").onclick = function() { 
+        for(def in defaults) {    
+            var current = defaults[def];
+            if(gid("booky"+def).checked)
+                loadLib(current.url, def, current.func);            
+
+            gid("booky"+def).disabled = true;
+        }        
+    };
+    
+    
+    
+    makeDefaultBookmarklet();
+
+}
+
+function doubleClick() {
+    //load default list of libs that are not already loaded
+    for(def in defaults) {    
+        var current = defaults[def];
+        if(!current.loaded())
+            if(bookyDefaults.indexOf(def) != -1)
+                loadLib(current.url, def, current.func);           
+    }       
+}
+
+
+/***************************************
+    LIBS
+***************************************/
+    
+function gid(id) {return document.getElementById(id);} 
+
+function loadLib(url, libName, func) {
+    if (typeof func == "function") func()
+    else loadScript(url, function(){showWindow("<div class='bookyLoaded'>Loaded "+libName+"</div>");});
+    
+}
+function slide() {}
+function fade () {}
+
 function showWindow(html) {
     window.scrollTo(0,0);//it is absolutely positioned at the top so move the viewport there
     
@@ -100,177 +178,18 @@ function showWindow(html) {
     }
 }
 
-function slide() {}
-function fade () {}
-function gid(id) {return document.getElementById(id);} 
-
-
-//menu
-if(bookyStatus == "loading1") {
-    var bookyHtml = "";
-               /*"<input type=checkbox id=bookyFirebug> <label for=bookyFirebug>Firebug 1.2</label> <a title=Documentation target=_blank href=http://getfirebug.com/docs.html>?</a><br>"+  
-               "<input type=checkbox id=bookyjQuery> <label for=bookyjQuery>jQuery 1.2.6</label> <a title=Documentation  target=_blank href=http://docs.jquery.com/>?</a><br>"+  
-               "<input type=checkbox id=bookyPrototype> <label for=bookyPrototype>Prototype 1.6.0.3</label> <a title=Documentation  target=_blank href=http://prototypejs.org/api>?</a><br>"+  
-               "<input type=checkbox id=bookyMooTools> <label for=bookyMooTools>MooTools 1.2.1</label> <a title=Documentation  target=_blank href=http://mootools.net/docs/>?</a><br>"+  
-               "<input type=checkbox id=bookysheetUp> <label for=bookysheetUp>sheetUp</label> <a title=Documentation  target=_blank href=http://code.google.com/p/sheetup/w/list>?</a><br>"+  
-              */
-
+function makeDefaultBookmarklet() {
+    var html ="<a href=\"javascript:bookyDefaults='";       
     
     for(def in defaults) {
-        console.log(def, defaults[def]);
-        var current = defaults[def];
-        bookyHtml += "<input type='checkbox' id='booky"+def+"'> <label for='booky"+def+"'>"+current.name+"</label> <a title='Documentation' target='_blank' href='"+current.docs+"'>?</a><br />";
-        console.log(bookyHtml);
-    
+        if(gid("booky"+def).checked)
+            html += def+",";        
     }   
-    
-    bookyHtml +="<input type=button id=bookyGo value='Load JS'>"+
-                ""+
-                "<div id=bookyBookmarkDefaults title='This is a generated bookmarklet with these options set as default. Double-click the bookmarklet to open them without this dialog.'></div>";
-               
-    
-                              
-    showWindow(bookyHtml);
-    
-    var firebugbooky = gid("bookyFirebug"), //careful with vars...should get rid of these incase  
-        jquery = gid("bookyjQuery"),    
-        prototype = gid("bookyPrototype"),
-        mootools = gid("bookyMooTools"),   
-        sheetup = gid("bookysheetUp");    
         
-    //setup checkboxes
-    //disable firebug if its loaded already
-    if(gid("_firebugConsole") !== null || typeof firebug !== "undefined") 
-        firebugbooky.disabled = true;    
-    else if (bookyDefaults.indexOf("Firebug") != -1)
-        firebugbooky.checked = true;
-        
-    if(typeof jQuery !== "undefined" || typeof $ !== "undefined")
-        jquery.disabled = true;
-    else if(bookyDefaults.indexOf("jQuery") != -1)
-        jquery.checked = true;
-    
-    if(typeof Prototype !== "undefined")
-        prototype.disabled = true;
-    else if(bookyDefaults.indexOf("Prototype") != -1)
-        prototype.checked = true;
-            
-    if(typeof ss !== "undefined")
-        sheetup.disabled = true;
-    else if(bookyDefaults.indexOf("sheetUp") != -1)
-        sheetup.checked = true;
-           
-    if(typeof MooTools !== "undefined")
-        mootools.disabled = true;
-    else if(bookyDefaults.indexOf("MooTools") != -1)
-        mootools.checked = true;            
-            
-
-    function loadStuff() {   
-        if(firebugbooky.checked)
-            loadLib("http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js", "Firebug", loadFB);
-        
-        if(jquery.checked)
-            loadLib("http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js", "jQuery");
-        
-        if(prototype.checked)
-             loadLib("http://prototypejs.org/assets/2008/9/29/prototype-1.6.0.3.js", "Prototype");
-            
-        if(mootools.checked)
-            loadLib("http://mootools.net/download/get/mootools-1.2.1-core-yc.js", "MooTools");
-                    
-        if(sheetup.checked)
-            loadLib("http://sheetup.com/js/sheetup.packed.js", "sheetUp");
-                    
-        gid("bookyFirebug")   .disabled =
-        gid("bookyjQuery")    .disabled =
-        gid("bookyPrototype")    .disabled =
-        gid("bookyMooTools")  .disabled =
-        gid("bookysheetUp").disabled =
-        gid("bookyGo")   .disabled = true;          
-            
-    }
-    
-    
-    
-    
-    
-    
-     //Events
-    gid("bookyFirebug").onclick =
-    gid("bookyPrototype").onclick =
-    gid("bookyjQuery").onclick =
-    gid("bookyMooTools").onclick =
-    gid("bookysheetUp").onclick = makeDefaultBookmarklet;
-    
-    gid("bookyGo").onclick = loadStuff;
-
-    
-    makeDefaultBookmarklet();
-}
-
-
-//looks at defaulits variable - easy way of making custom book mark
-else if (bookyStatus == "loading2") {    
-
-    if(gid("_firebugConsole") === null && typeof firebug === "undefined") {
-        if(bookyDefaults.indexOf("firebug") != -1)
-            loadLib("http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js", "Firebug", loadFB);
-    }
-    if(typeof jQuery === "undefined")
-        if(bookyDefaults.indexOf("jQuery") != -1)
-            loadLib("http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js", "jQuery");
-    
-    if(typeof Prototype === "undefined")
-        if(bookyDefaults.indexOf("Prototype") != -1)
-            loadLib("http://prototypejs.org/assets/2008/9/29/prototype-1.6.0.3.js", "Prototype");
-        
-    if(typeof MooTools === "undefined")    
-        if(bookyDefaults.indexOf("MooTools") != -1)
-            loadLib("http://mootools.net/download/get/mootools-1.2.1-core-yc.js", "MooTools");
-    
-    if(typeof ss === "undefined")
-        if(bookyDefaults.indexOf("sheetUp") != -1)
-            loadLib("http://sheetup.com/js/sheetup.packed.js", "sheetUp");
-
-}
-
-
-/*Load*/
-function loadLib(url, libName, func) {
-    if (typeof func == "function") func()
-    else loadScript(url, function(){showWindow("<div class='bookyLoaded'>Loaded "+libName+"</div>");});
-    
-}
-
-
-
-function makeDefaultBookmarklet() {
-    var html ="<a href=\"javascript:bookyDefaults='";        
-    
-    if(firebugbooky.checked)
-        html += "Firebug,";
-    
-    if(jquery.checked)
-        html += "jQuery,";    
-    
-    if(prototype.checked)
-        html += "Prototype,";
-    
-    if(mootools.checked)
-        html += "MooTools,";
-    
-    if(sheetup.checked)
-        html += "sheetUp,";
-        
-    html+="';bookyBaseUrl='"+bookyBaseUrl+"';";
-    
+    html+="';bookyBaseUrl='"+bookyBaseUrl+"';";    
     html+="function%20loadScript(url,callback){url=typeof%20url==='undefined'?bookyBaseUrl+'bookywooky.js':url;var%20scr=document.createElement('script');scr.setAttribute('src',url);document.getElementsByTagName('head')[0].appendChild(scr);}if(typeof%20bookyStatus==='undefined'){var%20bookyStatus='waiting2ndclick';var%20bookyFunc1=window.setTimeout(function(){bookyStatus='loading1';loadScript();},200);}else%20if(bookyStatus==='waiting2ndclick'){window.clearTimeout(bookyFunc1);bookyStatus='loading2';loadScript();}else{alert('BookyWooky%20is%20already%20loaded!');}void(0);";
-    
     gid("bookyBookmarkDefaults").innerHTML = (html + "\">BookyWooky</a>");    
 }
-
-
 
 
 function bookyCloseFunc() {
@@ -280,16 +199,6 @@ function bookyCloseFunc() {
    
 }
 
-function loadFB() {
-    //document.location.href ="javascript:var firebug=document.createElement('script');firebug.setAttribute('src','http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js');document.body.appendChild(firebug);(function(){if(window.firebug.version){firebug.init();}else{setTimeout(arguments.callee);}})();void(firebug);"
-  
-    document.location.href = "javascript:"+
-    "var firebug=document.createElement('script');"+
-    "firebug.setAttribute('src','http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js');"+
-    "document.body.appendChild(firebug);"+
-    "(function(){if(window.firebug.version){firebug.init();document.getElementById('bookyDiv').innerHTML += '<div class=\"bookyLoaded\">Loaded Firebug</div>';}else{setTimeout(arguments.callee);}})();"+
-    "void(firebug);";
-}
 
 
 

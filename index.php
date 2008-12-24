@@ -2,11 +2,11 @@
     $title = "DOM Stylesheet Library";
 	$id = "home";
 	$desc = "sheetUp is a Javascript library that makes manipulating DOM stylesheets easy.";
-	$keywords = "easy dom stylesheets, javascript stylesheets made easy, javascript stylesheet library";
+	$keywords = "easy dom stylesheets, javascript stylesheets made easy, javascript stylesheet library, double click bookmarklet, double click favelet";
     @include_once "inc/header.php"; 
 ?>
 <script src="js/sheetup.js" type="text/javascript"></script>
-<div id="home">
+<div>
 
 <div class="leftbox">
 	<div id="features">
@@ -65,7 +65,7 @@
 
 </div>
 <div class="rightbox">
-  <div id="whats">
+  <div class="whats">
     <h2>What's on this site</h2>
 	<p>So much needs doing, like a redesign, but here's the main stuff for now:</p>
 	<dl>
@@ -89,12 +89,15 @@
 </div>
 
 <div class="rightbox">
-  <div id="whats">
+  <div class="whats">
 	<h2>Bookmarklet</h2>
 	<p>Use in combination with Firebug, right-click the link below and Bookmark</p>
     <p><a href="javascript:var%20scr=document.createElement('script');scr.setAttribute('src','http://www.sheetup.com/js/sheetup.js');document.body.appendChild(scr);void(0);" title="Add sheetUp Bookmarklet">sheetUp Bookmarklet</a></p>
-          
-	
+<!--
+    <p>
+      For a bookmarklet manager, to load sheetUp along with other libraries, try <a href="#bookywooky">BookyWooky</a>.
+    </p>-->
+  
 	
 	
 <div class="clear"></div>  
@@ -141,6 +144,41 @@
 <p>sheetUp is a javascript stylesheet library to simplyify the manipulation of DOM style sheet objects.</p>
 <div id="news">
   <h2>News</h2>
+  <!--
+  <h3 id="bookywooky"><a href="bookywooky.php">BookyWooky - A bookmarklet/favelet manager</a></h3>
+  
+  <p>
+   <a href="http://www.learningjquery.com/2008/06/updated-jquery-bookmarklet">
+      Karl
+      Swedberg's jQueryify</a> gave me an idea. 
+    I wanted to extend it to allow a user to easily load up any library or tools they wanted.
+    For now it's limited to Firebug Lite, jQuery, Prototype,
+    MooTools and sheetUp. I've quickly tested it on IE6/7, Opera 10, Firefox 3 (not yet compatible with Webkit.)
+    If you double-click the bookmarklet it will only load the default options without showing the dialog.
+    And, the dialog generates a custom bookmark. The question marks link to the respective documentation.
+  </p>
+
+-->
+  <!--
+  <p>
+    <a href="javascript:bookyBaseUrl='http://<?php echo $_SERVER['HTTP_HOST']?>/bookywooky/';bookyDefaults='Firebug,jQuery';function loadScript(url,callback){url=typeof url==='undefined'?bookyBaseUrl+'bookywooky.js':url;var scr=document.createElement('script');scr.setAttribute('src',url);document.getElementsByTagName('head')[0].appendChild(scr);}if(typeof bookyStatus==='undefined'){var bookyStatus='waiting2ndclick';var bookyFunc1=window.setTimeout(function(){bookyStatus='loading1';loadScript();},200);}else if(bookyStatus==='waiting2ndclick'){window.clearTimeout(bookyFunc1);bookyStatus='loading2';loadScript();}else{alert('BookyWooky is already loaded!');}void(0);" title="BookyWooky Bookmarklet">BookyWooky</a>.
+    &lt;- Try clicking it now. Works best with Firefox if dragged onto the Bookmarks Toolbar.
+  </p>
+
+  <p>Todo</p>
+  <ul>
+    <li>Add custom scripts to the bookmarklet e.g. other tools and libraries</li>
+    <li>Major code clean up (and bookmarklet link)</li>
+    <li>Script onload for ie</li>
+    <li>Perhaps some snazzy fade or slide in/out</li>
+    <li>Some way of auto-managing conflicts between libraries</li>
+    <li>Webkit compatiblity</li>
+    <li>Double-click bookmarklet in IE</li>
+  </ul>
+-->
+
+
+  <h3>tEd - template Editor</h3>
   <p>
     <strong>
       With sheetUp to help I've been making an in-browser CSS/HTML editor. Try it out right now by clicking
