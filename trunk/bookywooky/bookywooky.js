@@ -1,11 +1,8 @@
 /*
 todo
     Add custom scripts to the bookmarklet e.g. other tools and libraries
-    Major code clean up (and bookmarklet link)
     Script onload for ie
     Perhaps some snazzy fade or slide in/out
-    Some way of auto-managing conflicts between libraries
-    Webkit compatiblity
     Double-click bookmarklet in IE
 
 */
@@ -74,6 +71,9 @@ function mergeCustom() {
 mergeCustom();
 
 
+/***************************************
+    INIT THE REQUESTED FUNCTION
+***************************************/
 if(bookyStatus       === "loading1") 
     singleClick();
 else if (bookyStatus === "loading2") {     
@@ -86,30 +86,34 @@ else if (bookyStatus === "loading2") {
 ***************************************/
 
 function singleClick() {
-
     
+    //build up html for the checkboxes, and the loading button
     var bookyHtml = "";
     
     for(def in defaults) {
         var current = defaults[def];
-        bookyHtml += "<input type='checkbox' id='booky"+def+"'> <label style='color:#fff' for='booky"+def+"'>"+current.name+"</label> <a style='color:#eee;text-decoration:none;border-bottom:1px dotted #fff;' title='Documentation' target='_blank' href='"+current.docs+"'>?</a><br />";
+        bookyHtml += "<input type='checkbox' id='booky"+def+"'> <label  id='bookyLabel"+def+"' style='color:#fff' for='booky"+def+"'>"+current.name+"</label> <a style='color:#eee;text-decoration:none;border-bottom:1px dotted #fff;' title='Documentation' target='_blank' href='"+current.docs+"'>?</a><br />";
     }   
     
     bookyHtml +="<input type=button id=bookyGo value='Load JS' style='float:right;border:none;position:relative;top:3px;'>"+
                 "<div id=bookyBookmarkDefaults style='padding-bottom:5px;' title='This is a generated bookmarklet with these options set as default. Double-click the bookmarklet to open them without this dialog.'></div>";
-
+    //show the html in the top-right hand corner
     showWindow(bookyHtml);
-
+    
+    //check the default boxes, disable any already loaded, and add events to the checkboxes
     for(def in defaults) {
         var current = defaults[def];
-        if(current.loaded())
-            gid("booky"+def).disabled = true;
-        else if(bookyDefaults.indexOf(def) != -1)
-            gid("booky"+def).checked = true;        
-                
-        gid("booky"+def).onclick = makeDefaultBookmarklet;
+        if(current.loaded()) {
+            gid("booky"+def).title = gid("bookyLabel"+def).title = "Loaded already";
+            gid("booky"+def).disabled = true;             
+        }
+        else if(bookyDefaults.indexOf(def) != -1) {
+            gid("booky"+def).checked = true;           
+        }        
+        gid("booky"+def).onchange = gid("booky"+def).onclick = makeDefaultBookmarklet;
     }   
     
+    //set up the load button
     gid("bookyGo").onclick = function() { 
         for(def in defaults) {    
             var current = defaults[def];
@@ -118,16 +122,14 @@ function singleClick() {
 
             gid("booky"+def).disabled = true;
         }        
-    };
-    
-    
+    };    
     
     makeDefaultBookmarklet();
 
 }
 
+//load default list of libs that are not already loaded
 function doubleClick() {
-    //load default list of libs that are not already loaded
     for(def in defaults) {    
         var current = defaults[def];
         if(!current.loaded())
@@ -145,9 +147,9 @@ function gid(id) {return document.getElementById(id);}
 
 function loadLib(url, libName, func) {
     if (typeof func == "function") func()
-    else loadScript(url, function(){showWindow("<div class='bookyLoaded'>Loaded "+libName+"</div>");});
-    
+    else loadScript(url, function(){showWindow("<div class='bookyLoaded'>Loaded "+defaults[libName].name+"</div>");});    
 }
+
 function slide() {}
 function fade () {}
 
@@ -195,8 +197,7 @@ function makeDefaultBookmarklet() {
 function bookyCloseFunc() {
     //todo...
     //rmove any event listeners?
-    //shoud hvae 1 big func for whoel thingm, then set that to undefeind and remove that
-   
+    //shoud hvae 1 big func for whoel thingm, then set that to undefeind and remove that   
 }
 
 })();

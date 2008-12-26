@@ -21,7 +21,14 @@
   </p>
 
   <p>
-    <a href="javascript:bookyBaseUrl='http://<?php echo $_SERVER['HTTP_HOST']?>/sheetup/bookywooky/';bookyDefaults='Firebug,jQuery';function loadScript(url,callback){url=typeof url==='undefined'?bookyBaseUrl+'bookywooky.js':url;var scr=document.createElement('script');scr.setAttribute('src',url);document.getElementsByTagName('head')[0].appendChild(scr);}if(typeof bookyStatus==='undefined'){var bookyStatus='waiting2ndclick';var bookyFunc1=window.setTimeout(function(){bookyStatus='loading1';loadScript();},200);}else if(bookyStatus==='waiting2ndclick'){window.clearTimeout(bookyFunc1);bookyStatus='loading2';loadScript();}else{alert('BookyWooky is already loaded!');}void(0);" title="BookyWooky Bookmarklet">BookyWooky</a>.
+    <a href="javascript:bookyBaseUrl='http://<?php 
+    
+    if ($_SERVER['HTTP_HOST']=="localhost")        
+      echo $_SERVER['HTTP_HOST']."/sheetup";
+    else
+      echo $_SERVER['HTTP_HOST'];
+    
+    ?>/bookywooky/';bookyDefaults='Firebug,jQuery';function loadScript(url,callback){url=typeof url==='undefined'?bookyBaseUrl+'bookywooky.js':url;var scr=document.createElement('script');scr.setAttribute('src',url);document.getElementsByTagName('head')[0].appendChild(scr);}if(typeof bookyStatus==='undefined'){var bookyStatus='waiting2ndclick';var bookyFunc1=window.setTimeout(function(){bookyStatus='loading1';loadScript();},200);}else if(bookyStatus==='waiting2ndclick'){window.clearTimeout(bookyFunc1);bookyStatus='loading2';loadScript();}else{alert('BookyWooky is already loaded!');}void(0);" title="BookyWooky Bookmarklet">BookyWooky</a>.
    &lt;-- Try clicking it now. Works best with Firefox if dragged onto the Bookmarks Toolbar.
   </p>
 
@@ -42,7 +49,7 @@
 
 <fieldset>
   <p>
-    <label for="custom">The following custom bookmarklet that removes the normal jQuery from the list and adds jQuery 1.3 Beta 1:</label>
+    <label for="custom">The following custom bookmarklet that removes the normal jQuery from the list and adds jQuery 1.3 Beta 1:</label><br />
 <textarea id="custom" style="width:800px;height:200px;">
 var bookyMerge = {
     jQuery13: {
@@ -70,13 +77,22 @@ var bookyMerge = {
   var ta = document.getElementById("custom"),
   input = document.getElementById("defaultLoading"),
   pre2 = document.getElementById("pre2"),
+  defaultLoading = document.getElementById("defaultLoading"),
   customBookmarklet = document.getElementById("customBookmarklet");
 
   ta.onkeyup = function() {
   pre2.innerHTML = customBookmarklet.href =
-  defaultLoading.value+
-  escape(ta.value.replace(/\n/i, ""));
+  "javascript:" +
+  defaultLoading.value +
+  ta.value.replace(/\n/g, "") +
+  "bookyBaseUrl='http://<?php   if ($_SERVER['HTTP_HOST']=="localhost")   echo $_SERVER['HTTP_HOST']."/sheetup";  else  echo $_SERVER['HTTP_HOST']; ?>/bookywooky/';" +
+  "function%20loadScript(url,callback){url=typeof%20url==='undefined'?bookyBaseUrl+'bookywooky.js':url;var%20scr=document.createElement('script');scr.setAttribute('src',url);document.getElementsByTagName('head')[0].appendChild(scr);}if(typeof%20bookyStatus==='undefined'){var%20bookyStatus='waiting2ndclick';var%20bookyFunc1=window.setTimeout(function(){bookyStatus='loading1';loadScript();},200);}else%20if(bookyStatus==='waiting2ndclick'){window.clearTimeout(bookyFunc1);bookyStatus='loading2';loadScript();}else{alert('BookyWooky%20is%20already%20loaded!');}void(0);";
+  
   };
+  
+  ta.onkeyup();
+  
+  
 </script>
 
 
