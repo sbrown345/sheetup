@@ -6,20 +6,6 @@
     @include_once "inc/header.php"; 
 ?>
 
-
- 
-  
-  <p>
-   <a href="http://www.learningjquery.com/2008/06/updated-jquery-bookmarklet">
-      Karl
-      Swedberg's jQueryify</a> gave me an idea. 
-    I wanted to extend it to allow a user to easily load up any library or tools they wanted.
-    For now it's limited to Firebug Lite, jQuery, Prototype,
-    MooTools and sheetUp. I've quickly tested it on IE6/7, Opera 10, Firefox 3 (not yet compatible with Webkit.)
-    If you double-click the bookmarklet it will only load the default options without showing the dialog.
-    And, the dialog generates a custom bookmark. The question marks link to the respective documentation.
-  </p>
-
   <p>
     <a href="javascript:bookyBaseUrl='http://<?php 
     
@@ -31,9 +17,23 @@
     ?>/bookywooky/';bookyDefaults='Firebug,jQuery';function loadScript(url,callback){url=typeof url==='undefined'?bookyBaseUrl+'bookywooky.js':url;var scr=document.createElement('script');scr.setAttribute('src',url);document.getElementsByTagName('head')[0].appendChild(scr);}if(typeof bookyStatus==='undefined'){var bookyStatus='waiting2ndclick';var bookyFunc1=window.setTimeout(function(){bookyStatus='loading1';loadScript();},200);}else if(bookyStatus==='waiting2ndclick'){window.clearTimeout(bookyFunc1);bookyStatus='loading2';loadScript();}else{alert('BookyWooky is already loaded!');}void(0);" title="BookyWooky Bookmarklet">BookyWooky</a>.
    &lt;-- Try clicking it now. Works best with Firefox if dragged onto the Bookmarks Toolbar.
   </p>
+ 
+  
+  <p>
+   <a href="http://www.learningjquery.com/2008/06/updated-jquery-bookmarklet">
+      Karl
+      Swedberg's jQueryify</a> gave me an idea. 
+    I wanted to extend it to allow a user to easily load up any library or tool they wanted.
+   I've quickly tested it on IE6/7, Opera 10, Firefox 3 and Chrome/Safari.
+   <ul>   
+      <li>If you double-click the bookmarklet it will only load the default options without showing the dialog.</li>
+      <li>The popup dialog's "BookyWooky" link generates the same bookmarklet but with the currently selected options as default.</li>
+      <li>The question marks link to the respective documentation.</li>
+      <li>Things already loaded are greyed out.</li>
+   </ul>
+  </p>
 
-<br />
-<br />
+
 <br />
 <br />
 <br />
@@ -41,7 +41,7 @@
 
 <h2>Modifying BookyWooky</h2>
 
-<p>You can update the bookmarklet to use other bookmarklets.</p>
+<p>You can customise it to use other bookmarklets.</p>
 
 
 
@@ -49,7 +49,7 @@
 
 <fieldset>
   <p>
-    <label for="custom">The following custom bookmarklet that removes the normal jQuery from the list and adds jQuery 1.3 Beta 1:</label><br />
+    <label for="custom">The following custom bookmarklet that removes the default jQuery 1.2.6 from the list and adds jQuery 1.3 Beta 1:</label><br />
 <textarea id="custom" style="width:800px;height:200px;">
 var bookyMerge = {
     jQuery13: {
@@ -81,18 +81,20 @@ var bookyMerge = {
   customBookmarklet = document.getElementById("customBookmarklet");
 
   ta.onkeyup = function() {
-  pre2.innerHTML = customBookmarklet.href =
+ //  pre2.innerHTML =
+  customBookmarklet.href =
   "javascript:" +
   defaultLoading.value +
+  ";bookyMergeText='" + ta.value.replace(/\n/g, "").replace(/\'/g, "\\\"") +"';" +
   ta.value.replace(/\n/g, "") +
   "bookyBaseUrl='http://<?php   if ($_SERVER['HTTP_HOST']=="localhost")   echo $_SERVER['HTTP_HOST']."/sheetup";  else  echo $_SERVER['HTTP_HOST']; ?>/bookywooky/';" +
   "function%20loadScript(url,callback){url=typeof%20url==='undefined'?bookyBaseUrl+'bookywooky.js':url;var%20scr=document.createElement('script');scr.setAttribute('src',url);document.getElementsByTagName('head')[0].appendChild(scr);}if(typeof%20bookyStatus==='undefined'){var%20bookyStatus='waiting2ndclick';var%20bookyFunc1=window.setTimeout(function(){bookyStatus='loading1';loadScript();},200);}else%20if(bookyStatus==='waiting2ndclick'){window.clearTimeout(bookyFunc1);bookyStatus='loading2';loadScript();}else{alert('BookyWooky%20is%20already%20loaded!');}void(0);";
-  
+
   };
-  
+
   ta.onkeyup();
-  
-  
+
+
 </script>
 
 
@@ -100,9 +102,8 @@ var bookyMerge = {
 <br />
 
 
-<h3>Custom loading function</h3>
-<p>If the bookmarklet requres a special function to load. E.g. it might need to run an init function like Firebug does then a forth paramenter can be added to bookyMerge. E.g. <code>{name: "", loaded: Function, docs: "", func: function() {}}</code>
-. This code will need to append the script to the page.</p>
+<h3>Custom Loading Function</h3>
+<p>If the bookmarklet requres a special function to load. e.g. it might need to run an init function like Firebug does. A forth paramenter can be added to bookyMerge. </p>
 
 <p>The defaults array that the custom settings gets merged into are the following, notice the Firebug init func:</p>
 
