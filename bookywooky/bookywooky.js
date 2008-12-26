@@ -1,17 +1,12 @@
 /*
 todo
-    Add custom scripts to the bookmarklet e.g. other tools and libraries
     Script onload for ie
-    Perhaps some snazzy fade or slide in/out
     Double-click bookmarklet in IE
 
 */
 
 
 (function() {
-//tidy up - easy to add another lib etc
-//make little fadein or slide animtion
-//way to add custom libraries...AND TOOLS!!!!!!!. - could be really useful then!
 
 /*
 var bookyMerge = {
@@ -54,8 +49,7 @@ var defaults = {
 
 function mergeCustom() {
     if(typeof bookyMerge !== "object")
-        return;
-    
+        return;    
     
     for(def in defaults) {    
         for(merg in bookyMerge) {
@@ -170,11 +164,21 @@ function showWindow(html) {
     }
     else {
         //Add HTML
-        var bookyHtml = "<span id=bookyClose style='color:red;cursor:pointer;float:right;padding:0px 7px 0 0;' onclick='document.getElementById(\"bookyDiv\").parentNode.removeChild(document.getElementById(\"bookyDiv\"));bookyStatus = undefined;' title='Close BookyWooky'>x</span>" +  html;    
+        var bookyHtml = "<span id='bookyClose' style='color:red;cursor:pointer;float:right;padding:0px 7px 0 0;' onclick='document.getElementById(\"bookyDiv\").parentNode.removeChild(document.getElementById(\"bookyDiv\"));bookyStatus = undefined;' title='Close BookyWooky'>x</span>" +  html;    
         var bookyDiv = document.createElement("DIV");
         bookyDiv.id = "bookyDiv";
-        bookyDiv.setAttribute("style", "color:white;text-align:left;padding:5px;font-size:11px;font-family:Arial, sans-serif;position:absolute;left:0;top:0;color:fff;background:#000;width:190px;");
-        bookyDiv.title = "BookyWooky - Load JavaScript libraries and Firebug console on to any webpage anywhere. http://sheetup.com/";
+        bookyDiv.style.color = "#fff";
+        bookyDiv.style.textAlign = "left";
+        bookyDiv.style.padding = "5px";
+        bookyDiv.style.fontSize = "11px";
+        bookyDiv.style.fontFamily = "Arial,sans-serif";
+        bookyDiv.style.position="absolute";
+        bookyDiv.style.left = "0";
+        bookyDiv.style.top = "0";
+        bookyDiv.style.background = "#000";
+        bookyDiv.style.zIndex = "99999";
+        bookyDiv.style.width = "190px";        
+        bookyDiv.title = "BookyWooky - Load JavaScript libraries and Firebug console on to any webpage anywhere. Customise it here: http://sheetup.com/bookywooky.php";
         bookyDiv.innerHTML = bookyHtml;
         document.body.appendChild(bookyDiv);
     }
@@ -185,12 +189,18 @@ function makeDefaultBookmarklet() {
     
     for(def in defaults) {
         if(gid("booky"+def).checked)
-            html += def+",";        
+            html += def+",";
     }   
-        
-    html+="';bookyBaseUrl='"+bookyBaseUrl+"';";    
+ 
+    html+="';bookyBaseUrl='"+bookyBaseUrl+"';";   
+    if(typeof bookyMergeText !== "undefined") {
+        html+=escape(bookyMergeText.replace(/\n/g, "") + ";");
+        html+=escape("bookyMergeText='"+bookyMergeText+"';");    
+    }
     html+="function%20loadScript(url,callback){url=typeof%20url==='undefined'?bookyBaseUrl+'bookywooky.js':url;var%20scr=document.createElement('script');scr.setAttribute('src',url);document.getElementsByTagName('head')[0].appendChild(scr);}if(typeof%20bookyStatus==='undefined'){var%20bookyStatus='waiting2ndclick';var%20bookyFunc1=window.setTimeout(function(){bookyStatus='loading1';loadScript();},200);}else%20if(bookyStatus==='waiting2ndclick'){window.clearTimeout(bookyFunc1);bookyStatus='loading2';loadScript();}else{alert('BookyWooky%20is%20already%20loaded!');}void(0);";
-    gid("bookyBookmarkDefaults").innerHTML = (html + "\">BookyWooky</a>");    
+    html += "\">BookyWooky</a> <a href='http://sheetup.com/bookywooky.php'  style='color:#eee;text-decoration:none;border-bottom:1px dotted #fff;' title='Customise it further' target='_blank'>Homepage</a>"
+    
+    gid("bookyBookmarkDefaults").innerHTML = html;    
 }
 
 
