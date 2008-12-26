@@ -144,34 +144,36 @@
 <p>sheetUp is a javascript stylesheet library to simplyify the manipulation of DOM style sheet objects.</p>
 <div id="news">
   <h2>News</h2>
-  <!--
+ 
   <h3 id="bookywooky"><a href="bookywooky.php">BookyWooky - A bookmarklet/favelet manager</a></h3>
   
+  <p>
+    <a href="javascript:bookyBaseUrl='http://<?php 
+    
+    if ($_SERVER['HTTP_HOST']=="localhost")        
+      echo $_SERVER['HTTP_HOST']."/sheetup";
+    else
+      echo $_SERVER['HTTP_HOST'];
+    
+    ?>/bookywooky/';bookyDefaults='Firebug,jQuery';function loadScript(url,callback){url=typeof url==='undefined'?bookyBaseUrl+'bookywooky.js':url;var scr=document.createElement('script');scr.setAttribute('src',url);document.getElementsByTagName('head')[0].appendChild(scr);}if(typeof bookyStatus==='undefined'){var bookyStatus='waiting2ndclick';var bookyFunc1=window.setTimeout(function(){bookyStatus='loading1';loadScript();},200);}else if(bookyStatus==='waiting2ndclick'){window.clearTimeout(bookyFunc1);bookyStatus='loading2';loadScript();}else{alert('BookyWooky is already loaded!');}void(0);" title="BookyWooky Bookmarklet">BookyWooky</a>.
+    &lt;- Try clicking it now. Works best with Firefox if dragged onto the Bookmarks Toolbar.
+  </p>
+
   <p>
    <a href="http://www.learningjquery.com/2008/06/updated-jquery-bookmarklet">
       Karl
       Swedberg's jQueryify</a> gave me an idea. 
     I wanted to extend it to allow a user to easily load up any library or tools they wanted.
     For now it's limited to Firebug Lite, jQuery, Prototype,
-    MooTools and sheetUp. I've quickly tested it on IE6/7, Opera 10, Firefox 3 (not yet compatible with Webkit.)
+    MooTools and sheetUp. I've quickly tested it on IE6/7, Opera 10, Firefox 3.
     If you double-click the bookmarklet it will only load the default options without showing the dialog.
     And, the dialog generates a custom bookmark. The question marks link to the respective documentation.
   </p>
 
--->
-  <!--
-  <p>
-    <a href="javascript:bookyBaseUrl='http://<?php echo $_SERVER['HTTP_HOST']?>/bookywooky/';bookyDefaults='Firebug,jQuery';function loadScript(url,callback){url=typeof url==='undefined'?bookyBaseUrl+'bookywooky.js':url;var scr=document.createElement('script');scr.setAttribute('src',url);document.getElementsByTagName('head')[0].appendChild(scr);}if(typeof bookyStatus==='undefined'){var bookyStatus='waiting2ndclick';var bookyFunc1=window.setTimeout(function(){bookyStatus='loading1';loadScript();},200);}else if(bookyStatus==='waiting2ndclick'){window.clearTimeout(bookyFunc1);bookyStatus='loading2';loadScript();}else{alert('BookyWooky is already loaded!');}void(0);" title="BookyWooky Bookmarklet">BookyWooky</a>.
-    &lt;- Try clicking it now. Works best with Firefox if dragged onto the Bookmarks Toolbar.
-  </p>
+  <p><a href="bookywooky.php">Customise BookyWooky</a></p>
 
-  <p>Todo</p>
-  <ul>
-    <li>Script onload for ie</li>
-    <li>Perhaps some snazzy fade or slide in/out</li>
-    <li>Double-click bookmarklet in IE</li>
-  </ul>
--->
+
+
 
 
   <h3>tEd - template Editor</h3>
