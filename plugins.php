@@ -2,7 +2,7 @@
     $title = "Plugins";
 	$id = "plugs";
 	$desc = "Extensions/plugins for sheetUp.";
-	$keywords = "javascript extensions, sheetup extensions";
+	$keywords = "javascript extensions, sheetup extensions, document.styleSheets";
     @include_once "inc/header.php"; 
 ?>
 
