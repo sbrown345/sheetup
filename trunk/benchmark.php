@@ -2,7 +2,7 @@
     $title = "Benchmark";
 	$id = "bench";
 	$desc = "Test the performance of the current sheetUp stylesheet library.";
-	$keywords = "library test, library benchmark, stylesheet performance, dom stylesheet performance";
+	$keywords = "library test, library benchmark, stylesheet performance, dom stylesheet performance, document.styleSheets";
     @include_once "inc/header.php"; 
 	
 ?>
@@ -242,15 +242,15 @@ window.onload = function() {
             
       
             <div id="charts">
-            <h2>Charts</h2>
-           <!-- http://code.google.com/apis/chart/#simple     js<br />-->
+            <!--<h2>Charts</h2>
+            http://code.google.com/apis/chart/#simple     js<br />-->
                 
            
            
        
 
             <!--<img id="imgtest" alt="Test graph" src="http://chart.apis.google.com/chart?cht=bhs&chd=t:60,40,20&chs=200x130&chxl=0:|0|2000|1:|Webkit|Gecko|Trident&chxt=x,y&chtt=Copy+1000+rules" /></div>-->
-                             
+                    
             
             <div class="agent">Agent: <span id="agent"></span></div>
             <div class="date">Date: <span id="date"></span></div>

@@ -2,7 +2,7 @@
     $title = "HoverEd";
 	$id = "eg";
 	$desc = "A floating Javascript stylesheet editor using sheetUp.";
-	$keywords = "floating editor, inpage css editor, floating css editor";
+	$keywords = "floating editor, inpage css editor, floating css editor, document.styleSheets";
     @include_once "inc/header.php"; 
 ?>
            

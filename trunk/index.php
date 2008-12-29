@@ -1,5 +1,5 @@
 <?php 
-    $title = "DOM Stylesheet Library";
+    $title = "document.styleSheets Helper Library";
 	$id = "home";
 	$desc = "sheetUp is a Javascript library that makes manipulating DOM stylesheets easy.";
 	$keywords = "easy dom stylesheets, javascript stylesheets made easy, javascript stylesheet library, double click bookmarklet, double click favelet";
@@ -11,7 +11,7 @@
 <div class="leftbox">
 	<div id="features">
 		<h2>What?</h2>
-		<p>Simplify the tedious task of manipulating stylesheets contained in document.styleSheets.</p>
+		<p>Simplify the tedious task of manipulating stylesheet objects contained in document.styleSheets.</p>
 		<h2>Features</h2>
 		
 		<ul>
