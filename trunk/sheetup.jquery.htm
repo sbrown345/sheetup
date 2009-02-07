@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<link href="css/ext.css" rel="stylesheet" type="text/css" />
+
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="js/sheetup.jquery.js" type="text/javascript"></script>
+
+
+    
+
+<!--
+
+<script type='text/javascript' src='http://getfirebug.com/releases/lite/1.2/firebug-lite-compressed.js'></script>
+
+-->
+
+
+
+
+
+</head>
+<body>
+this tests sheetup as an extention to jquery
+<pre>
+I can extend the selector thing to work with the stylesheets and rules that are selected...?
+
+reasons: try get it more interactive with dom, use jqueryies internal functions, jqueryes .data?
+
+see what things can happen if they are combined, might find osmething new
+
+$("ss: .test").ss.add("color","red");
+$("ss: .test").ss.remove("color");
+
+try use same syntax as before..... only slight modification!!!!!!
+
+
+</pre>
+
+<pre>preee</pre>
+
+<div class="importedRules">.importedRules</div>
+
+<script type="text/javascript">
+
+
+//console.log("sheets",$(ss.ds).ss());
+console.log("rules ",$(ss.ds[0].cssRules).ss());
+
+console.log($("pre:ss"))
+
+function log(m,m2) {
+    console.log(m,m2)
+}
+</script>
+
+</body>
+</html>
