@@ -1,0 +1,1 @@
+A library to manipulate DOM Stylesheets and rules contained in document.styleSheets, inspired by jQuery. For example, `ss("#header").property("color", "#000");` will change the header text colour to red. And, `ss("a:hover{color:#eee}");` will create a new rule.
